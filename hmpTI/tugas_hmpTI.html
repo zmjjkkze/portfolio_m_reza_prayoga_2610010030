@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HMP-TI UNISKA MAB – Divisi Kewirausahaan | IT Solution</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="logo-hmpti.jpg">
+  
+  <!-- Google Fonts: Inter & Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="tugas_hmpTI.css">
+
+  <!-- Anti-flash Dark Mode Script -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme-preference');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.classList.add('dark-mode');
+        });
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-primary">HMP-TI UNISKA</span>
+          <span class="logo-secondary">Divisi Kewirausahaan</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About Us</a></li>
+        <li><a href="#programs" class="nav-link">Programs</a></li>
+        <li><a href="produk.html" class="nav-link">Menu</a></li>
+        <li><a href="jasa.html" class="nav-link">Jasa</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Ganti mode gelap/terang" title="Ganti mode gelap/terang">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon">🌙</span>
+        </button>
+        <a href="partner.html" class="nav-cta" id="navJoinBtn">Bergabung</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigasi">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       1. HERO SECTION (#home)
+       ============================================================ -->
+  <section class="hero" id="home">
+    <div class="hero-container">
+      <div class="hero-content">
+        <span class="hero-badge">✦ Divisi Kewirausahaan · HMP-TI UNISKA MAB</span>
+        <h1 class="hero-title">
+          Selamat datang di<br>
+          <span class="highlight">IT Solution</span>
+        </h1>
+        <p class="hero-desc">
+          Selamat datang di website Divisi Kewirausahaan Himpunan Mahasiswa Program Studi Teknik Informatika (HMP-TI) Universitas Islam Kalimantan Muhammad Arsyad Al Banjari.
+          <br><br>
+          Kami hadir sebagai wadah untuk mengembangkan potensi mahasiswa dalam bidang kewirausahaan, membangun kreativitas, serta menciptakan peluang usaha melalui inovasi dan kolaborasi.
+        </p>
+        <div class="hero-actions">
+          <a href="produk.html" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+            <span>Menu</span> ➔
+          </a>
+          <a href="jasa.html" class="btn btn-outline btn-white" style="display: inline-flex; align-items: center; gap: 8px;">
+            <span>Jasa</span> ➔
+          </a>
+          <a href="partner.html" class="btn btn-outline btn-white" id="btnHeroJoin">Daftar Sekarang</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Program Kerja</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">50+</span>
+            <span class="stat-label">Anggota Aktif</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Jiwa Wirausaha</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-circle">
+          <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" style="width: 170px; height: 170px; object-fit: cover; border-radius: 50%; border: 3px solid rgba(255, 255, 255, 0.4); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);">
+        </div>
+        <div class="float-card card-1">
+          <span style="font-size: 1.6rem;">🚀</span>
+          <p style="font-size: 0.84rem; font-weight: 700; color: #fff; margin-top: 4px;">Start-up Ready</p>
+          <small style="color: var(--blue-400); font-size: 0.72rem;">Inovasi Digital</small>
+        </div>
+        <div class="float-card card-2">
+          <span style="font-size: 1.6rem;">🤝</span>
+          <p style="font-size: 0.84rem; font-weight: 700; color: #fff; margin-top: 4px;">Kolaborasi</p>
+          <small style="color: var(--cyan); font-size: 0.72rem;">Sinergi Mahasiswa</small>
+        </div>
+        <div class="float-card card-3">
+          <span style="font-size: 1.6rem;">💼</span>
+          <p style="font-size: 0.84rem; font-weight: 700; color: #fff; margin-top: 4px;">Bisnis Mandiri</p>
+          <small style="color: var(--blue-400); font-size: 0.72rem;">Kemandirian Finansial</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wave separator -->
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+        <path class="hero-wave-path" d="M0,32 C320,72 800,0 1440,36 L1440,80 L0,80 Z"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       2. ABOUT US SECTION (#about)
+       ============================================================ -->
+  <section class="section about-section" id="about">
+    <div class="section-container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-header">
+            <span class="section-tag">Tentang Kami</span>
+            <h2 class="section-title">Wadah Kreativitas &amp; <span class="highlight">Jiwa Bisnis</span> Mahasiswa IT</h2>
+          </div>
+          <p>
+            Selamat datang di website resmi Divisi Kewirausahaan Himpunan Mahasiswa Program Studi Teknik Informatika (HMP-TI) Universitas Islam Kalimantan Muhammad Arsyad Al Banjari.
+          </p>
+          <p>
+            Divisi Kewirausahaan berfokus pada pengembangan kemampuan, bakat, dan minat mahasiswa dalam bidang bisnis modern dan IT Solution. Kami hadir sebagai wadah belajar membangun usaha mandiri, menumbuhkan kreativitas, serta menciptakan peluang nyata melalui pemanfaatan teknologi digital.
+          </p>
+        </div>
+
+        <div class="about-cards">
+          <!-- Visi -->
+          <div class="vision-card">
+            <h3>🎯 Visi</h3>
+            <p>
+              Menjadi pusat riset dan layanan yang profesional, unggul, dan terdepan di bidang IPTEK dan pengembangannya bagi warga kampus dan masyarakat.
+            </p>
+          </div>
+
+          <!-- Misi -->
+          <div class="mission-card">
+            <h3>🚀 Misi</h3>
+            <ol class="mission-list" style="margin-top: 14px; display: flex; flex-direction: column; gap: 14px; padding-left: 0; list-style: none;">
+              <li style="display: flex; gap: 12px; align-items: flex-start; color: #f1f5f9; font-size: 0.9rem; line-height: 1.6;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.4); border-radius: 50%; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;">1</span>
+                <span>Mewujudkan organisasi HMP-TI yang handal dan terpercaya.</span>
+              </li>
+              <li style="display: flex; gap: 12px; align-items: flex-start; color: #f1f5f9; font-size: 0.9rem; line-height: 1.6;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.4); border-radius: 50%; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;">2</span>
+                <span>Membudidayakan dan mengimplementasikan nilai-nilai IPTEK di kalangan warga kampus dan masyarakat.</span>
+              </li>
+              <li style="display: flex; gap: 12px; align-items: flex-start; color: #f1f5f9; font-size: 0.9rem; line-height: 1.6;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.4); border-radius: 50%; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;">3</span>
+                <span>Menumbuhkembangkan kreatifitas mahasiswa di Fakultas Teknologi Informasi khususnya Prodi Teknik Informatika.</span>
+              </li>
+              <li style="display: flex; gap: 12px; align-items: flex-start; color: #f1f5f9; font-size: 0.9rem; line-height: 1.6;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.4); border-radius: 50%; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;">4</span>
+                <span>Mewujudkan pelaku wirausaha yang mandiri, produktif, inovatif, dan profesional.</span>
+              </li>
+              <li style="display: flex; gap: 12px; align-items: flex-start; color: #f1f5f9; font-size: 0.9rem; line-height: 1.6;">
+                <span style="display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(96, 165, 250, 0.4); border-radius: 50%; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; margin-top: 2px;">5</span>
+                <span>Menanamkan jiwa kepemimpinan yang berkarakter, bertanggung jawab, intelektual, solidaritas, dan berbasis keislaman.</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nilai-Nilai Divisi -->
+      <div class="values-grid">
+        <div class="value-card">
+          <span class="value-icon">💡</span>
+          <h4 class="value-title">Inovasi</h4>
+          <p class="value-desc">Menciptakan ide produk dan solusi bisnis kreatif yang bernilai tambah.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">🤝</span>
+          <h4 class="value-title">Kolaborasi</h4>
+          <p class="value-desc">Membangun sinergi harmonis antar mahasiswa, kampus, dan UMKM mitra.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">📈</span>
+          <h4 class="value-title">Pertumbuhan</h4>
+          <p class="value-desc">Mengembangkan potensi wirausaha secara progresif dan berkelanjutan.</p>
+        </div>
+        <div class="value-card">
+          <span class="value-icon">🎯</span>
+          <h4 class="value-title">Kemandirian</h4>
+          <p class="value-desc">Membentuk pribadi mahasiswa yang mandiri, adaptif, dan berdaya saing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       3. OUR PROGRAMS (#programs)
+       ============================================================ -->
+  <section class="section programs-section" id="programs">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Program Kerja</span>
+        <h2 class="section-title">Program Kerja <span class="highlight">Divisi</span></h2>
+        <p class="section-desc">
+          Rangkaian inisiatif dan kegiatan strategis yang kami laksanakan untuk memupuk jiwa wirausaha mahasiswa secara nyata.
+        </p>
+      </div>
+
+      <div class="programs-grid">
+        <!-- Program 1 -->
+        <div class="program-card">
+          <span class="program-number">01</span>
+          <span class="program-icon">🎪</span>
+          <h3 class="program-title">Entrepreneurship Day</h3>
+          <p class="program-desc">
+            Kegiatan bazar dan pameran penjualan produk untuk memberikan pengalaman langsung berwirausaha, interaksi jual-beli, dan validasi pasar kepada mahasiswa.
+          </p>
+          <div class="program-tags">
+            <span class="program-tag">Bazar Kampus</span>
+            <span class="program-tag">Pameran Karya</span>
+            <span class="program-tag">Penjualan Langsung</span>
+          </div>
+        </div>
+
+        <!-- Program 2 -->
+        <div class="program-card">
+          <span class="program-number">02</span>
+          <span class="program-icon">💬</span>
+          <h3 class="program-title">Business Sharing</h3>
+          <p class="program-desc">
+            Sesi talkshow dan diskusi interaktif berbagi pengalaman serta pengetahuan seputar dunia bisnis bersama praktisi profesional dan founder sukses.
+          </p>
+          <div class="program-tags">
+            <span class="program-tag">Talkshow</span>
+            <span class="program-tag">Mentoring</span>
+            <span class="program-tag">Jejaring Bisnis</span>
+          </div>
+        </div>
+
+        <!-- Program 3 -->
+        <div class="program-card">
+          <span class="program-number">03</span>
+          <span class="program-icon">🛠️</span>
+          <h3 class="program-title">Creative Product Development</h3>
+          <p class="program-desc">
+            Inkubasi dan workshop kreatif untuk membimbing mahasiswa dalam merancang, memproduksi, dan mengemas produk bernilai komersial tinggi.
+          </p>
+          <div class="program-tags">
+            <span class="program-tag">Inkubasi Bisnis</span>
+            <span class="program-tag">R&amp;D Produk</span>
+            <span class="program-tag">Packaging Design</span>
+          </div>
+        </div>
+
+        <!-- Program 4 -->
+        <div class="program-card">
+          <span class="program-number">04</span>
+          <span class="program-icon">📱</span>
+          <h3 class="program-title">Digital Marketing</h3>
+          <p class="program-desc">
+            Pelatihan strategi pemasaran digital melalui media sosial, pembuatan konten promosi, optimasi engagement, serta implementasi platform e-commerce.
+          </p>
+          <div class="program-tags">
+            <span class="program-tag">Social Media Ads</span>
+            <span class="program-tag">Content Creation</span>
+            <span class="program-tag">E-Commerce</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       4. PRODUK & JASA SECTION (#menu)
+       ============================================================ -->
+  <section class="section menu-section" id="menu" style="background-color: var(--navy-50);">
+    <div class="section-container">
+      <div class="section-header" style="text-align: center; margin-bottom: 36px;">
+        <span class="section-tag">Katalog Pilihan</span>
+        <h2 class="section-title">Produk &amp; Jasa</h2>
+        <p class="section-desc" style="margin: 0 auto;">
+          Kunjungi website katalog pilihan kami untuk melihat daftar lengkap dan memesan via WhatsApp.
+        </p>
+      </div>
+
+      <div class="product-cards-grid">
+        <!-- Card 1: Menu -->
+        <div class="menu-card-box">
+          <div>
+            <div style="font-size: 3.5rem; margin-bottom: 12px;">☕</div>
+            <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 10px;">
+              Menu
+            </h3>
+            <p class="section-desc" style="margin: 0 auto 24px; font-size: 0.95rem;">
+              Daftar menu minuman kopi racikan, non-kopi, minuman kemasan segar, dan aneka makanan ringan.
+            </p>
+          </div>
+          <a href="produk.html" class="btn btn-primary" style="font-size: 1.05rem; padding: 14px 38px; display: inline-flex; align-items: center; gap: 8px;">
+            <span>Buka Menu</span> ➔
+          </a>
+        </div>
+
+        <!-- Card 2: Jasa -->
+        <div class="menu-card-box">
+          <div>
+            <div style="font-size: 3.5rem; margin-bottom: 12px;">💻</div>
+            <h3 class="section-title" style="font-size: 1.5rem; margin-bottom: 10px;">
+              Jasa
+            </h3>
+            <p class="section-desc" style="margin: 0 auto 24px; font-size: 0.95rem;">
+              Layanan jilid, print &amp; fotocopy dokumen/stiker, desain poster kreatif, hingga pembuatan website.
+            </p>
+          </div>
+          <a href="jasa.html" class="btn btn-primary" style="font-size: 1.05rem; padding: 14px 38px; display: inline-flex; align-items: center; gap: 8px;">
+            <span>Buka Jasa</span> ➔
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       5. CONTACT US (#contact)
+       ============================================================ -->
+  <section class="section contact-section" id="contact">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">Hubungi Kami</span>
+        <h2 class="section-title">Let's <span class="highlight">Collaborate</span> and Grow Together!</h2>
+        <p class="section-desc">
+          Punya ide bisnis? Ingin memperkenalkan produk? Atau ingin berkolaborasi bersama Divisi Kewirausahaan HMP-TI? Kami terbuka untuk bersinergi!
+        </p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Info Kontak -->
+        <div class="contact-info-cards" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="contact-info-card">
+            <div class="contact-icon-circle" style="width: 44px; height: 44px; border-radius: 50%; background: var(--navy-600); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+              📸
+            </div>
+            <div>
+              <p style="color: var(--navy-300); font-size: 0.8rem; margin-bottom: 2px;">Instagram Resmi</p>
+              <p style="color: var(--white); font-weight: 600; font-size: 0.95rem;">@hmpti_uniska</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-icon-circle" style="width: 44px; height: 44px; border-radius: 50%; background: var(--navy-600); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+              💬
+            </div>
+            <div>
+              <p style="color: var(--navy-300); font-size: 0.8rem; margin-bottom: 2px;">WhatsApp Divisi</p>
+              <p style="color: var(--white); font-weight: 600; font-size: 0.95rem;">+62 812-3456-7890</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-icon-circle" style="width: 44px; height: 44px; border-radius: 50%; background: var(--navy-600); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+              📍
+            </div>
+            <div>
+              <p style="color: var(--navy-300); font-size: 0.8rem; margin-bottom: 2px;">Lokasi Kampus</p>
+              <p style="color: var(--white); font-weight: 600; font-size: 0.95rem;">UNISKA MAB Banjarmasin, Kalimantan Selatan</p>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <div class="contact-icon-circle" style="width: 44px; height: 44px; border-radius: 50%; background: var(--navy-600); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">
+              ✉️
+            </div>
+            <div>
+              <p style="color: var(--navy-300); font-size: 0.8rem; margin-bottom: 2px;">Email Korespondensi</p>
+              <p style="color: var(--white); font-weight: 600; font-size: 0.95rem;">kewirausahaan.hmpti@uniska-bjm.ac.id</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form Pesan -->
+        <div class="contact-form-card">
+          <form id="contactForm" class="contact-form" style="display: flex; flex-direction: column; gap: 16px;">
+            <input type="text" id="contactName" name="name" placeholder="Nama Lengkap *" required>
+            <input type="email" id="contactEmail" name="email" placeholder="Alamat Email *" required>
+            <textarea id="contactMessage" name="message" placeholder="Tuliskan pesan, ide kolaborasi, atau pertanyaan kamu... *" rows="4" required></textarea>
+            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 14px;">
+              Kirim Pesan Sekarang
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" class="logo-img">
+          <div class="logo-text">
+            <span class="logo-primary">HMP-TI UNISKA</span>
+            <span class="logo-secondary">Divisi Kewirausahaan</span>
+          </div>
+        </div>
+        <p class="footer-tagline">
+          Build Your Idea, Start Your Business! Mengembangkan jiwa kewirausahaan dan inovasi mahasiswa Teknik Informatika UNISKA MAB Banjarmasin.
+        </p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">📸</a>
+          <a href="#" aria-label="WhatsApp">💬</a>
+          <a href="#" aria-label="Website">🌐</a>
+          <a href="#" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <div class="footer-links">
+          <a href="#home">Home</a>
+          <a href="#about">About Us</a>
+          <a href="#programs">Programs</a>
+          <a href="produk.html">Menu</a>
+          <a href="jasa.html">Jasa</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Program Kerja</h4>
+        <div class="footer-links">
+          <a href="#programs">Entrepreneurship Day</a>
+          <a href="#programs">Business Sharing</a>
+          <a href="#programs">Product Development</a>
+          <a href="#programs">Digital Marketing</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Alamat &amp; Kontak</h4>
+        <p style="color: var(--navy-300); font-size: 0.86rem; line-height: 1.7; margin-bottom: 12px;">
+          Gedung FTI UNISKA MAB Banjarmasin<br>
+          Jl. Adhyaksa No. 2, Kayu Tangi<br>
+          Banjarmasin, Kalimantan Selatan 70123
+        </p>
+        <p style="color: var(--blue-400); font-size: 0.86rem;">
+          kewirausahaan.hmpti@uniska-bjm.ac.id
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 HMP-TI UNISKA MAB Banjarmasin – Divisi Kewirausahaan. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <span>Teknik Informatika UNISKA • IT Solution &amp; Entrepreneurship</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       GLOBAL ELEMENTS: TOAST, BACK TO TOP, & MODALS
+       ============================================================ -->
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">↑</button>
+
+  <!-- Modal Pendaftaran / Bergabung -->
+  <div class="modal" id="joinModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="joinModalClose" aria-label="Tutup">&times;</button>
+      <div class="modal-header">
+        <h2>Formulir Business Partner</h2>
+        <p>Bergabunglah menjadi mitra usaha bersama Divisi Kewirausahaan HMP-TI UNISKA MAB.</p>
+      </div>
+      <form id="joinForm" class="modal-form">
+        <label for="joinBrand">Nama Perusahaan atau Brand *</label>
+        <input type="text" id="joinBrand" placeholder="Contoh: Kopi Banjar, Dapur Berkah" required>
+
+        <label for="joinOwner">Nama Pemilik atau Penanggung Jawab *</label>
+        <input type="text" id="joinOwner" placeholder="Nama lengkap pemilik usaha / PIC" required>
+
+        <label for="joinAddress">Alamat Usaha *</label>
+        <textarea id="joinAddress" rows="2" placeholder="Alamat lengkap tempat usaha / produksi" required></textarea>
+
+        <div class="form-row">
+          <div>
+            <label for="joinWA">Nomor WhatsApp *</label>
+            <input type="tel" id="joinWA" placeholder="Contoh: 081234567890" required>
+          </div>
+          <div>
+            <label for="joinEmail">Email *</label>
+            <input type="email" id="joinEmail" placeholder="Contoh: usaha@gmail.com" required>
+          </div>
+        </div>
+
+        <label for="joinProduct">Jenis Produk Makanan/Minuman *</label>
+        <input type="text" id="joinProduct" placeholder="Contoh: Kopi Botol, Boba, Keripik, Snack" required>
+
+        <label for="joinSocial">Media Sosial atau Marketplace *</label>
+        <input type="text" id="joinSocial" placeholder="Contoh: IG @namabrand / link Shopee" required>
+
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px; justify-content: center; width: 100%;">
+          Formulir Produk ➔
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="tugas_hmpTI.js"></script>
+</body>
+</html>

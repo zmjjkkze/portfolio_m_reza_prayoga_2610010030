@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu – HMP-TI UNISKA MAB</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="logo-hmpti.jpg">
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="tugas_hmpTI.css">
+
+  <style>
+    /* Specific styles for Menu Minuman page */
+    .menu-header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #3b82f6;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    body.dark-mode .menu-header-badge {
+      background: rgba(96, 165, 250, 0.15);
+      color: #60a5fa;
+      border-color: rgba(96, 165, 250, 0.3);
+    }
+
+    .drink-hero {
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 60%, var(--navy-700) 100%);
+      color: #ffffff;
+      padding: 130px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .drink-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='white' stroke-width='0.5' stroke-opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .drink-hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: #ffffff !important;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+    .drink-hero p {
+      max-width: 620px;
+      margin: 0 auto 24px;
+      color: #cbd5e1 !important;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .hero-btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* Product Card enhancements */
+    .drink-card {
+      background: var(--white);
+      border: 1px solid var(--navy-100);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .drink-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--blue-500);
+    }
+    body.dark-mode .drink-card {
+      background: #0f2038;
+      border-color: #1a3356;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    body.dark-mode .drink-card:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .drink-img-wrap {
+      width: 100%;
+      height: 170px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(14, 165, 233, 0.15));
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .drink-category-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 50px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--navy-900);
+      backdrop-filter: blur(4px);
+    }
+    body.dark-mode .drink-category-tag {
+      background: rgba(10, 23, 40, 0.85);
+      color: #93c5fd;
+    }
+
+    .drink-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-bottom: 8px;
+    }
+    body.dark-mode .drink-title {
+      color: #ffffff;
+    }
+
+    .drink-desc {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+    body.dark-mode .drink-desc {
+      color: #94a3b8;
+    }
+
+    .drink-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-top: 14px;
+      border-top: 1px dashed var(--navy-100);
+      margin-top: auto;
+    }
+    body.dark-mode .drink-footer {
+      border-top-color: #1a3356;
+    }
+
+    .drink-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .drink-price {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #1d4ed8;
+    }
+    body.dark-mode .drink-price {
+      color: #60a5fa;
+    }
+
+    .qty-control {
+      display: inline-flex;
+      align-items: center;
+      background: var(--navy-50);
+      border-radius: 50px;
+      border: 1px solid var(--navy-200);
+      overflow: hidden;
+    }
+    body.dark-mode .qty-control {
+      background: #0a1728;
+      border-color: #213c60;
+    }
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--navy-700);
+      font-size: 1.1rem;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .qty-btn:hover {
+      background: var(--navy-200);
+    }
+    body.dark-mode .qty-btn {
+      color: #cbd5e1;
+    }
+    body.dark-mode .qty-btn:hover {
+      background: #142740;
+    }
+    .qty-value {
+      width: 28px;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    body.dark-mode .qty-value {
+      color: #ffffff;
+    }
+
+    .btn-order-wa {
+      width: 100%;
+      background-color: #25d366;
+      color: #ffffff !important;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+      text-decoration: none;
+    }
+    .btn-order-wa:hover {
+      background-color: #1ebc59;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+    }
+
+    /* Floating Order Cart Bar */
+    .cart-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      background: var(--navy-900);
+      color: #ffffff;
+      padding: 14px 28px;
+      border-radius: 50px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      z-index: 999;
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      max-width: 90%;
+    }
+    .cart-bar.active {
+      transform: translateX(-50%) translateY(0);
+    }
+    .cart-bar-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-bar-total {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #60a5fa;
+    }
+    .cart-bar-count {
+      font-size: 0.75rem;
+      color: #cbd5e1;
+    }
+    .cart-bar-btn {
+      background: #25d366;
+      color: #ffffff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+    .cart-bar-btn:hover {
+      background: #1ebc59;
+    }
+  </style>
+
+  <!-- Anti-flash Dark Mode Script -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme-preference');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.classList.add('dark-mode');
+        });
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="tugas_hmpTI.html" class="nav-logo">
+        <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-primary">HMP-TI UNISKA</span>
+          <span class="logo-secondary">Kedai &amp; Menu</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="tugas_hmpTI.html#home" class="nav-link">← Beranda Utama</a></li>
+        <li><a href="tugas_hmpTI.html#about" class="nav-link">About Us</a></li>
+        <li><a href="tugas_hmpTI.html#programs" class="nav-link">Programs</a></li>
+        <li><a href="#menu" class="nav-link active">Menu</a></li>
+        <li><a href="jasa.html" class="nav-link">Jasa</a></li>
+        <li><a href="tugas_hmpTI.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Ganti mode gelap/terang" title="Ganti mode gelap/terang">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon">🌙</span>
+        </button>
+        <a href="https://wa.me/628123456789?text=Halo%2C%20saya%20ingin%20tanya%20menu%20HMP-TI" target="_blank" class="nav-cta" style="background-color: #25d366; border-color: #25d366;">
+          Pesan via WA
+        </a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigasi">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO BANNER
+       ============================================================ -->
+  <header class="drink-hero">
+    <div style="position: relative; z-index: 1; max-width: 800px; margin: 0 auto;">
+      <span class="menu-header-badge" style="background: rgba(255,255,255,0.12); color: #93c5fd; border-color: rgba(255,255,255,0.25);">
+        ☕ Divisi Kewirausahaan HMP-TI UNISKA
+      </span>
+      <h1>Katalog <span class="highlight" style="color: #60a5fa !important;">Menu</span></h1>
+      <p>
+        Pilihan minuman segar racikan mahasiswa Teknik Informatika UNISKA. Mulai dari kopi autentik, latte lembut, hingga coklat premium dengan harga terjangkau!
+      </p>
+      <div class="hero-btn-row">
+        <a href="#menu" class="btn btn-primary">Lihat Daftar Menu</a>
+        <a href="jasa.html" class="btn btn-outline btn-white" style="color: #ffffff !important; border-color: rgba(255,255,255,0.7) !important; background: rgba(255,255,255,0.12) !important;">🛠️ Katalog Jasa IT ➔</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MENU SECTION
+       ============================================================ -->
+  <main class="section" id="menu" style="padding-top: 60px;">
+    <div class="section-container">
+      <!-- Switch Banner to Jasa -->
+      <div style="background: linear-gradient(90deg, #1e40af, #3b82f6); color: #ffffff; border-radius: var(--radius-lg); padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; box-shadow: var(--shadow-sm);">
+        <div>
+          <strong style="font-size: 1rem;">Butuh Layanan Percetakan, Desain &amp; IT?</strong>
+          <p style="margin: 2px 0 0 0; font-size: 0.85rem; opacity: 0.9;">Tersedia jilid, print &amp; FC stiker/dokumen, desain poster, dan pembuatan website.</p>
+        </div>
+        <a href="jasa.html" style="background: #ffffff; color: #1e40af !important; font-weight: 700; font-size: 0.88rem; padding: 8px 18px; border-radius: 50px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">🛠️ Kunjungi Katalog Jasa ➔</a>
+      </div>
+      <div class="section-header">
+        <span class="section-tag">Daftar Pilihan</span>
+        <h2 class="section-title">Semua <span class="highlight">Menu</span></h2>
+        <p class="section-desc">
+          Klik tombol pesan pada menu favorit kamu untuk langsung terhubung dengan WhatsApp admin pemesanan kami.
+        </p>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input type="text" id="drinkSearch" class="search-input" placeholder="Cari menu (contoh: Americano, Nextar, Beng-Beng, Matcha)...">
+        <button id="drinkSearchBtn" class="search-btn">Cari</button>
+      </div>
+
+      <!-- Filter Kategori -->
+      <div class="category-filters" id="drinkFilters">
+        <button class="filter-btn drink-filter-btn active" data-category="all">Semua Menu (23)</button>
+        <button class="filter-btn drink-filter-btn" data-category="kopi">☕ Kopi (5)</button>
+        <button class="filter-btn drink-filter-btn" data-category="non-kopi">🍵 Non Kopi (2)</button>
+        <button class="filter-btn drink-filter-btn" data-category="kemasan">🧃 Minuman Kemasan (10)</button>
+        <button class="filter-btn drink-filter-btn" data-category="makanan">🍪 Makanan Ringan (6)</button>
+      </div>
+
+      <!-- Grid Minuman -->
+      <div class="products-grid" id="drinksGrid" style="margin-top: 36px;">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" class="logo-img">
+          <div class="logo-text">
+            <span class="logo-primary">HMP-TI UNISKA</span>
+            <span class="logo-secondary">Divisi Kewirausahaan</span>
+          </div>
+        </div>
+        <p class="footer-tagline">
+          Menyajikan aneka minuman berkualitas untuk menyegarkan harimu di kampus. Dikembangkan dengan semangat kewirausahaan mahasiswa IT.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <div class="footer-links">
+          <a href="tugas_hmpTI.html#home">Beranda Utama</a>
+          <a href="tugas_hmpTI.html#about">Tentang Kami</a>
+          <a href="tugas_hmpTI.html#programs">Program Kerja</a>
+          <a href="#menu">Menu</a>
+          <a href="jasa.html">Jasa</a>
+          <a href="tugas_hmpTI.html#contact">Hubungi Kami</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Jam Layanan</h4>
+        <p style="color: var(--navy-300); font-size: 0.86rem; line-height: 1.7; margin-bottom: 12px;">
+          Senin – Sabtu: 09.00 – 17.00 WITA<br>
+          Area Kampus FTI UNISKA Banjarmasin
+        </p>
+        <p style="color: var(--blue-400); font-size: 0.86rem;">
+          WhatsApp: +62 812-3456-789
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 HMP-TI UNISKA MAB Banjarmasin – Divisi Kewirausahaan. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">↑</button>
+
+  <!-- Floating Order Cart Bar -->
+  <div class="cart-bar" id="cartBar">
+    <div class="cart-bar-info">
+      <span class="cart-bar-count" id="cartCount">0 item dipilih</span>
+      <span class="cart-bar-total" id="cartTotal">Rp 0</span>
+    </div>
+    <button class="cart-bar-btn" id="cartCheckoutBtn">
+      <span>Pesan Semua via WA</span> 💬
+    </button>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    'use strict';
+
+    // ── DATA MINUMAN ──
+    const DRINKS = [
+      {
+        id: 1,
+        category: 'kopi',
+        badge: 'Kopi',
+        emoji: '☕',
+        name: 'Americano',
+        priceVal: 10000,
+        priceText: 'Rp 10.000',
+        desc: 'Espresso murni berkualitas dengan air panas/dingin. Cita rasa kopi yang mantap, bold, dan autentik untuk menemani aktivitas harian.',
+        bg: 'linear-gradient(135deg, #1e293b, #334155)'
+      },
+      {
+        id: 2,
+        category: 'kopi',
+        badge: 'Kopi',
+        emoji: '☕',
+        name: 'Butterscotch',
+        priceVal: 15000,
+        priceText: 'Rp 15.000',
+        desc: 'Perpaduan seimbang kopi espresso pilihan dengan sirup butterscotch yang manis, wangi, dan creamy berkelas.',
+        bg: 'linear-gradient(135deg, #78350f, #b45309)'
+      },
+      {
+        id: 3,
+        category: 'kopi',
+        badge: 'Kopi',
+        emoji: '☕',
+        name: 'Hazelnut',
+        priceVal: 15000,
+        priceText: 'Rp 15.000',
+        desc: 'Kopi lembut beraroma kacang hazelnut yang khas, memberikan sensasi rasa manis gurih yang menenangkan.',
+        bg: 'linear-gradient(135deg, #854d0e, #d97706)'
+      },
+      {
+        id: 4,
+        category: 'kopi',
+        badge: 'Kopi',
+        emoji: '☕',
+        name: 'Caramel',
+        priceVal: 15000,
+        priceText: 'Rp 15.000',
+        desc: 'Kopi espresso dengan sentuhan karamel manis legit yang menyatu sempurna dengan susu segar pilihan.',
+        bg: 'linear-gradient(135deg, #9a3412, #ea580c)'
+      },
+      {
+        id: 5,
+        category: 'kopi',
+        badge: 'Kopi',
+        emoji: '☕',
+        name: 'Aren Latte',
+        priceVal: 15000,
+        priceText: 'Rp 15.000',
+        desc: 'Kopi susu dengan gula aren alami khas Nusantara, tekstur creamy dan manis pas yang bikin nagih.',
+        bg: 'linear-gradient(135deg, #451a03, #92400e)'
+      },
+      {
+        id: 6,
+        category: 'non-kopi',
+        badge: 'Non Kopi',
+        emoji: '🍵',
+        name: 'Matcha Latte',
+        priceVal: 20000,
+        priceText: 'Rp 20.000',
+        desc: 'Bubuk matcha murni premium blend dengan susu segar pilihan, rasa otentik khas Jepang yang menyejukkan.',
+        bg: 'linear-gradient(135deg, #14532d, #16a34a)'
+      },
+      {
+        id: 7,
+        category: 'non-kopi',
+        badge: 'Non Kopi',
+        emoji: '🍫',
+        name: 'Coklat',
+        priceVal: 20000,
+        priceText: 'Rp 20.000',
+        desc: 'Minuman coklat pekat premium yang kaya rasa, kental, dan creamy. Pilihan tepat untuk memanjakan lidah!',
+        bg: 'linear-gradient(135deg, #3b0764, #701a75)'
+      },
+      {
+        id: 8,
+        category: 'kemasan',
+        badge: 'Kemasan',
+        emoji: '🧃',
+        name: 'Ichitan',
+        priceVal: 9000,
+        priceText: 'Rp 9.000',
+        desc: 'Minuman teh kemasan segar dan nikmat khas Ichitan, pas dinikmati dingin saat cuaca terik.',
+        bg: 'linear-gradient(135deg, #065f46, #059669)'
+      },
+      {
+        id: 9,
+        category: 'kemasan',
+        badge: 'Kemasan',
+        emoji: '☕',
+        name: 'Good Day',
+        priceVal: 7000,
+        priceText: 'Rp 7.000',
+        desc: 'Kopi siap minum praktis dengan rasa nikmat dan manis yang pas untuk menemani waktu santai.',
+        bg: 'linear-gradient(135deg, #b45309, #d97706)'
+      },
+      {
+        id: 10,
+        category: 'kemasan',
+        badge: 'Kemasan',
+        emoji: '💧',
+        name: 'Prof',
+        priceVal: 4000,
+        priceText: 'Rp 4.000',
+        desc: 'Air mineral berkualitas dan segar untuk menjaga hidrasi tubuh tetap optimal sepanjang hari.',
+        bg: 'linear-gradient(135deg, #0284c7, #38bdf8)'
+      },
+      {
+        id: 11,
+        category: 'kemasan',
+        badge: 'Kemasan',
+        emoji: '☕',
+        name: 'Kopi ABC',
+        priceVal: 4000,
+        priceText: 'Rp 4.000',
+        desc: 'Kopi susu kemasan legendaris yang mantap, perpaduan kopi dan susu yang pas dan praktis.',
+        bg: 'linear-gradient(135deg, #78350f, #92400e)'
+      },
+      {
+        id: 12,
+        category: 'kemasan',
+        badge: 'Kemasan',
+        emoji: '🥛',
+        name: 'Milku',
+        priceVal: 4000,
+        priceText: 'Rp 4.000',
+        desc: 'Susu UHT lezat dengan sumber kalsium dan vitamin, rasa gurih manis favorit semua kalangan.',
+        bg: 'linear-gradient(135deg, #1e40af, #3b82f6)'
+      },
+      {
+        id: 13,
+        category: 'kemasan',
+        badge: 'Kemasan',
+        emoji: '🍊',
+        name: 'Floridina',
+        priceVal: 5000,
+        priceText: 'Rp 5.000',
+        desc: 'Jus jeruk kemasan segar dengan bulir jeruk asli yang manis dan menyegarkan tenggorokan.',
+        bg: 'linear-gradient(135deg, #c2410c, #f97316)'
+      },
+      {
+        id: 14,
+        category: 'kemasan',
+        badge: 'Kemasan',
+        emoji: '🍃',
+        name: 'Teh Pucuk',
+        priceVal: 5000,
+        priceText: 'Rp 5.000',
+        desc: 'Teh melati pilihan dari pucuk daun teh terbaik, rasa manis pas dan aroma melati yang harum.',
+        bg: 'linear-gradient(135deg, #15803d, #22c55e)'
+      },
+      {
+        id: 15,
+        category: 'kemasan',
+        badge: 'Kemasan',
+        emoji: '☕',
+        name: 'Golda',
+        priceVal: 4000,
+        priceText: 'Rp 4.000',
+        desc: 'Kopi siap minum dengan racikan biji kopi Brazil berkualitas dan susu lezat yang creamy.',
+        bg: 'linear-gradient(135deg, #854d0e, #ca8a04)'
+      },
+      {
+        id: 16,
+        category: 'kemasan',
+        badge: 'Kemasan',
+        emoji: '🥛',
+        name: 'Ultramilk',
+        priceVal: 9000,
+        priceText: 'Rp 9.000',
+        desc: 'Susu segar UHT berkualitas tinggi kaya nutrisi, rasa gurih nikmat dan menyegarkan.',
+        bg: 'linear-gradient(135deg, #1d4ed8, #60a5fa)'
+      },
+      {
+        id: 17,
+        category: 'kemasan',
+        badge: 'Kemasan',
+        emoji: '⚡',
+        name: 'Pocari',
+        priceVal: 7000,
+        priceText: 'Rp 7.000',
+        desc: 'Minuman isotonik untuk mengembalikan ion dan cairan tubuh yang hilang setelah beraktivitas.',
+        bg: 'linear-gradient(135deg, #0369a1, #0284c7)'
+      },
+      {
+        id: 18,
+        category: 'makanan',
+        badge: 'Makanan Ringan',
+        emoji: '🍪',
+        name: 'Nextar',
+        priceVal: 3000,
+        priceText: 'Rp 3.000',
+        desc: 'Kue brownies lembut dengan isian coklat lumer yang manis dan lezat di setiap gigitan.',
+        bg: 'linear-gradient(135deg, #78350f, #92400e)'
+      },
+      {
+        id: 19,
+        category: 'makanan',
+        badge: 'Makanan Ringan',
+        emoji: '🥧',
+        name: 'Choco Pie',
+        priceVal: 3000,
+        priceText: 'Rp 3.000',
+        desc: 'Bolu coklat lembut berlapis marshmallow kenyal manis berbalut coklat premium.',
+        bg: 'linear-gradient(135deg, #451a03, #78350f)'
+      },
+      {
+        id: 20,
+        category: 'makanan',
+        badge: 'Makanan Ringan',
+        emoji: '🥥',
+        name: 'Kalpa',
+        priceVal: 3000,
+        priceText: 'Rp 3.000',
+        desc: 'Wafer renyah berselimut coklat tebal dan taburan kelapa gurih yang renyah dan nikmat.',
+        bg: 'linear-gradient(135deg, #713f12, #a16207)'
+      },
+      {
+        id: 21,
+        category: 'makanan',
+        badge: 'Makanan Ringan',
+        emoji: '🍫',
+        name: 'Beng-Beng',
+        priceVal: 3000,
+        priceText: 'Rp 3.000',
+        desc: 'Kombinasi 4 kelezatan: wafer renyah, caramel legit, crispy rice, dan coklat tebal.',
+        bg: 'linear-gradient(135deg, #854d0e, #b45309)'
+      },
+      {
+        id: 22,
+        category: 'makanan',
+        badge: 'Makanan Ringan',
+        emoji: '🧀',
+        name: 'Siip',
+        priceVal: 1000,
+        priceText: 'Rp 1.000',
+        desc: 'Snack bite-size renyah berbalut bumbu keju/coklat gurih dengan harga super hemat.',
+        bg: 'linear-gradient(135deg, #ca8a04, #eab308)'
+      },
+      {
+        id: 23,
+        category: 'makanan',
+        badge: 'Makanan Ringan',
+        emoji: '🥔',
+        name: 'Triks',
+        priceVal: 1000,
+        priceText: 'Rp 1.000',
+        desc: 'Keripik kentang panggang renyah beraroma gurih, camilan pas untuk teman belajar.',
+        bg: 'linear-gradient(135deg, #b45309, #d97706)'
+      }
+    ];
+
+    const WA_NUMBER = '628123456789';
+    const cart = {}; // { id: qty }
+
+    // Toast helper
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Render Grid
+    function renderDrinks(category = 'all', searchQuery = '') {
+      const grid = document.getElementById('drinksGrid');
+      if (!grid) return;
+
+      const q = searchQuery.toLowerCase().trim();
+      const filtered = DRINKS.filter(d => {
+        const matchCat = (category === 'all') || (d.category === category);
+        const matchQuery = !q || d.name.toLowerCase().includes(q) || d.desc.toLowerCase().includes(q);
+        return matchCat && matchQuery;
+      });
+
+      grid.innerHTML = '';
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-light);">
+            <div style="font-size: 3.5rem; margin-bottom: 12px;">🔍</div>
+            <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 6px;">Menu tidak ditemukan</h3>
+            <p>Silakan coba kata kunci lain atau pilih kategori "Semua Menu".</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach((drink, index) => {
+        const qty = cart[drink.id] || 0;
+        const card = document.createElement('div');
+        card.className = 'drink-card fade-in';
+        card.style.animationDelay = `${index * 0.08}s`;
+
+        card.innerHTML = `
+          <div class="drink-img-wrap" style="background: ${drink.bg};">
+            <span class="drink-category-tag">${drink.badge}</span>
+            <span style="filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));">${drink.emoji}</span>
+          </div>
+          <h3 class="drink-title">${drink.name}</h3>
+          <p class="drink-desc">${drink.desc}</p>
+          <div class="drink-footer">
+            <div class="drink-price-row">
+              <span class="drink-price">${drink.priceText}</span>
+              <div class="qty-control">
+                <button class="qty-btn" data-action="minus" data-id="${drink.id}" aria-label="Kurang">−</button>
+                <span class="qty-value" id="qty-${drink.id}">${qty}</span>
+                <button class="qty-btn" data-action="plus" data-id="${drink.id}" aria-label="Tambah">+</button>
+              </div>
+            </div>
+            <button class="btn-order-wa" data-id="${drink.id}">
+              <span>Pesan via WhatsApp</span> 💬
+            </button>
+          </div>
+        `;
+
+        // Direct single WhatsApp order button
+        card.querySelector('.btn-order-wa').addEventListener('click', () => {
+          const count = cart[drink.id] || 1;
+          const totalRp = (drink.priceVal * count).toLocaleString('id-ID');
+          const unit = drink.category === 'makanan' ? 'pcs' : 'cup';
+          const msg = `Halo Divisi Kewirausahaan HMP-TI, saya ingin memesan:\n\n• ${drink.name} (${count} ${unit}) - Rp ${totalRp}\n\nMohon info ketersediaan dan cara pembayarannya. Terima kasih!`;
+          window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+        });
+
+        // Quantity selector
+        card.querySelectorAll('.qty-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const action = e.target.dataset.action;
+            const id = parseInt(e.target.dataset.id, 10);
+            const current = cart[id] || 0;
+
+            if (action === 'plus') {
+              cart[id] = current + 1;
+            } else if (action === 'minus' && current > 0) {
+              cart[id] = current - 1;
+              if (cart[id] === 0) delete cart[id];
+            }
+
+            const valEl = document.getElementById(`qty-${id}`);
+            if (valEl) valEl.textContent = cart[id] || 0;
+            updateCartBar();
+          });
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    // Update Floating Cart Bar
+    function updateCartBar() {
+      const cartBar = document.getElementById('cartBar');
+      const countEl = document.getElementById('cartCount');
+      const totalEl = document.getElementById('cartTotal');
+
+      let totalItems = 0;
+      let totalPrice = 0;
+
+      for (const [id, qty] of Object.entries(cart)) {
+        const drink = DRINKS.find(d => d.id === parseInt(id, 10));
+        if (drink && qty > 0) {
+          totalItems += qty;
+          totalPrice += drink.priceVal * qty;
+        }
+      }
+
+      if (totalItems > 0) {
+        countEl.textContent = `${totalItems} item dipilih`;
+        totalEl.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        cartBar.classList.add('active');
+      } else {
+        cartBar.classList.remove('active');
+      }
+    }
+
+    // Checkout all via WA
+    document.getElementById('cartCheckoutBtn')?.addEventListener('click', () => {
+      let lines = [];
+      let grandTotal = 0;
+
+      for (const [id, qty] of Object.entries(cart)) {
+        const drink = DRINKS.find(d => d.id === parseInt(id, 10));
+        if (drink && qty > 0) {
+          const subtotal = drink.priceVal * qty;
+          grandTotal += subtotal;
+          const unit = drink.category === 'makanan' ? 'pcs' : 'cup';
+          lines.push(`• ${drink.name} x ${qty} ${unit} = Rp ${subtotal.toLocaleString('id-ID')}`);
+        }
+      }
+
+      if (lines.length === 0) return;
+
+      const msg = `Halo Divisi Kewirausahaan HMP-TI, saya ingin memesan menu:\n\n` +
+        lines.join('\n') +
+        `\n\nTotal Pembayaran: Rp ${grandTotal.toLocaleString('id-ID')}\n\nMohon diproses pesanannya. Terima kasih!`;
+
+      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+    });
+
+    // Filtering & Searching
+    let activeCategory = 'all';
+
+    document.querySelectorAll('.drink-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.drink-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category || 'all';
+        const query = document.getElementById('drinkSearch')?.value || '';
+        renderDrinks(activeCategory, query);
+      });
+    });
+
+    const searchInput = document.getElementById('drinkSearch');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        renderDrinks(activeCategory, searchInput.value);
+      });
+    }
+
+    document.getElementById('drinkSearchBtn')?.addEventListener('click', () => {
+      renderDrinks(activeCategory, searchInput ? searchInput.value : '');
+    });
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        localStorage.setItem('theme-preference', isDark ? 'dark' : 'light');
+        showToast(isDark ? '🌙 Mode Gelap diaktifkan' : '☀️ Mode Terang diaktifkan');
+      });
+    }
+
+    // Mobile Navbar Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(l => {
+        l.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+
+    // Navbar scroll effect & Back to top
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 20);
+      if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      renderDrinks('all', '');
+    });
+  </script>
+</body>
+</html>
+

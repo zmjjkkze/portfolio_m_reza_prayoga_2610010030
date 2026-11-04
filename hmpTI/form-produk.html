@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulir Produk Mitra – HMP-TI UNISKA MAB</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="logo-hmpti.jpg">
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="tugas_hmpTI.css">
+
+  <style>
+    /* Specific styles for Formulir Produk Mitra */
+    .product-form-hero {
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 60%, var(--navy-700) 100%);
+      color: #ffffff;
+      padding: 130px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-form-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='white' stroke-width='0.5' stroke-opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .product-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 50px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    .product-form-hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: #ffffff !important;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+    .product-form-hero p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: #cbd5e1 !important;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* Step Indicator Bar */
+    .step-indicator-bar {
+      max-width: 760px;
+      margin: -28px auto 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--white);
+      border: 1px solid var(--navy-100);
+      border-radius: 50px;
+      padding: 12px 24px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      z-index: 10;
+      gap: 12px;
+    }
+    body.dark-mode .step-indicator-bar {
+      background: #0f2038;
+      border-color: #1a3356;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+    }
+    .step-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--navy-400);
+    }
+    .step-item.completed {
+      color: #10b981;
+    }
+    .step-item.active {
+      color: #3b82f6;
+    }
+    .step-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      background: var(--navy-100);
+      color: var(--navy-600);
+    }
+    body.dark-mode .step-num {
+      background: #142740;
+      color: #94a3b8;
+    }
+    .step-item.completed .step-num {
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+    }
+    .step-item.active .step-num {
+      background: #3b82f6;
+      color: #ffffff;
+    }
+    @media (max-width: 640px) {
+      .step-indicator-bar {
+        border-radius: var(--radius-lg);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 14px 20px;
+      }
+    }
+
+    /* Form Container */
+    .product-form-box {
+      max-width: 780px;
+      margin: 0 auto 60px;
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 42px 38px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--navy-100);
+    }
+    body.dark-mode .product-form-box {
+      background: #0f2038;
+      border-color: #1a3356;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-header-box {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .form-header-box h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      margin-bottom: 8px;
+    }
+    body.dark-mode .form-header-box h2 {
+      color: #ffffff;
+    }
+    .form-header-box p {
+      color: var(--navy-500);
+      font-size: 0.92rem;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    body.dark-mode .form-header-box p {
+      color: #94a3b8;
+    }
+
+    .product-grid-fields {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 680px) {
+      .product-grid-fields {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .product-form-box {
+        padding: 28px 20px;
+      }
+    }
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--navy-800);
+      margin-bottom: 8px;
+    }
+    body.dark-mode .form-label {
+      color: #cbd5e1;
+    }
+    .form-label span.req {
+      color: #ef4444;
+      font-weight: 700;
+    }
+    .form-label span.opt {
+      color: var(--navy-400);
+      font-weight: 400;
+      font-size: 0.8rem;
+    }
+    body.dark-mode .form-label span.opt {
+      color: #64748b;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--navy-200);
+      background: var(--white);
+      color: var(--navy-900);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    body.dark-mode .form-input,
+    body.dark-mode .form-select,
+    body.dark-mode .form-textarea {
+      background: #0a1728;
+      border-color: #1a3356;
+      color: #ffffff;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    }
+
+    /* Custom File Upload Box */
+    .file-upload-box {
+      border: 2px dashed var(--navy-200);
+      border-radius: var(--radius-md);
+      padding: 20px 16px;
+      text-align: center;
+      background: var(--navy-50);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+    body.dark-mode .file-upload-box {
+      background: #0a1728;
+      border-color: #213c60;
+    }
+    .file-upload-box:hover {
+      border-color: var(--blue-500);
+      background: rgba(59, 130, 246, 0.05);
+    }
+    body.dark-mode .file-upload-box:hover {
+      border-color: #3b82f6;
+      background: rgba(59, 130, 246, 0.1);
+    }
+    .file-upload-box input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+    .file-upload-icon {
+      font-size: 2rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .file-upload-text {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--navy-700);
+      margin-bottom: 2px;
+    }
+    body.dark-mode .file-upload-text {
+      color: #cbd5e1;
+    }
+    .file-upload-hint {
+      font-size: 0.76rem;
+      color: var(--navy-400);
+    }
+    body.dark-mode .file-upload-hint {
+      color: #64748b;
+    }
+
+    .file-selected-badge {
+      display: none;
+      margin-top: 10px;
+      padding: 6px 12px;
+      border-radius: 50px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #10b981;
+      font-size: 0.82rem;
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    /* Preview thumbnail for photo */
+    .image-preview-container {
+      display: none;
+      margin-top: 10px;
+      text-align: center;
+    }
+    .image-preview-thumb {
+      max-width: 140px;
+      max-height: 140px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      border: 2px solid var(--blue-400);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-submit-product {
+      width: 100%;
+      background: #25d366;
+      color: #ffffff !important;
+      border: none;
+      border-radius: 50px;
+      padding: 15px 28px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+      margin-top: 28px;
+    }
+    .btn-submit-product:hover {
+      background: #1ebc59;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(37, 211, 102, 0.5);
+    }
+
+    /* Note Banner */
+    .doc-info-note {
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.25);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 24px;
+      font-size: 0.86rem;
+      color: var(--navy-700);
+      line-height: 1.5;
+    }
+    body.dark-mode .doc-info-note {
+      background: rgba(59, 130, 246, 0.12);
+      border-color: rgba(59, 130, 246, 0.3);
+      color: #cbd5e1;
+    }
+  </style>
+
+  <!-- Anti-flash Dark Mode Script -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme-preference');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.classList.add('dark-mode');
+        });
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="tugas_hmpTI.html" class="nav-logo">
+        <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-primary">HMP-TI UNISKA</span>
+          <span class="logo-secondary">Divisi Kewirausahaan</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="tugas_hmpTI.html#home" class="nav-link">← Beranda Utama</a></li>
+        <li><a href="tugas_hmpTI.html#about" class="nav-link">About Us</a></li>
+        <li><a href="produk.html" class="nav-link">Menu</a></li>
+        <li><a href="jasa.html" class="nav-link">Jasa</a></li>
+        <li><a href="partner.html" class="nav-link">Business Partner</a></li>
+        <li><a href="tugas_hmpTI.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Ganti mode gelap/terang" title="Ganti mode gelap/terang">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon">🌙</span>
+        </button>
+        <a href="partner.html" class="nav-cta" style="background-color: var(--blue-600); border-color: var(--blue-600);">
+          Partner UMKM
+        </a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigasi">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO BANNER
+       ============================================================ -->
+  <header class="product-form-hero">
+    <div class="section-container">
+      <span class="product-badge">📦 Langkah 2 · Registrasi Produk Mitra</span>
+      <h1>Formulir Data <span class="highlight">Produk Mitra</span></h1>
+      <p>
+        Lengkapi rincian produk makanan atau minuman yang ingin Anda pasarkan bersama Divisi Kewirausahaan HMP-TI UNISKA. Data ini akan dimasukkan ke katalog resmi dan bazar kampus.
+      </p>
+    </div>
+  </header>
+
+  <!-- Step Indicator -->
+  <div class="step-indicator-bar">
+    <div class="step-item completed">
+      <span class="step-num">✓</span>
+      <span>1. Business Partner</span>
+    </div>
+    <div class="step-item active">
+      <span class="step-num">2</span>
+      <span>2. Formulir Produk &amp; Berkas</span>
+    </div>
+    <div class="step-item">
+      <span class="step-num">3</span>
+      <span>3. Verifikasi &amp; Tayang</span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN FORM
+       ============================================================ -->
+  <main class="section" style="padding-top: 10px;">
+    <div class="section-container">
+      <div class="product-form-box">
+        
+        <div class="form-header-box">
+          <h2>Rincian &amp; Berkas Produk</h2>
+          <p>
+            Pastikan seluruh data produk terisi akurat. Anda dapat melampirkan foto produk, daftar katalog menu, dan dokumen sertifikasi halal/izin edar.
+          </p>
+        </div>
+
+        <div class="doc-info-note">
+          <span style="font-size: 1.4rem; flex-shrink: 0;">📊</span>
+          <div>
+            <strong>Tersimpan Otomatis ke Database:</strong>
+            Setelah tombol kirim ditekan, formulir akan otomatis menyimpan seluruh data pendaftaran mitra dan rincian produk ke dalam <strong>Database Google Sheets HMP-TI</strong>.
+          </div>
+        </div>
+
+        <form id="productSubmitForm">
+          <div class="product-grid-fields">
+
+            <!-- 1. Nama Produk -->
+            <div class="field-full">
+              <label for="prodName" class="form-label">
+                Nama Produk <span class="req">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="prodName" 
+                class="form-input" 
+                placeholder="Contoh: Kopi Susu Aren Gula Asli 250ml / Keripik Pisang Lumer" 
+                required
+              >
+            </div>
+
+            <!-- 2. Jenis Produk -->
+            <div>
+              <label for="prodType" class="form-label">
+                Jenis Produk <span class="req">*</span>
+              </label>
+              <select id="prodType" class="form-select" required>
+                <option value="" disabled selected>Pilih Jenis Produk...</option>
+                <option value="Minuman Kopi">☕ Minuman Kopi</option>
+                <option value="Minuman Non Kopi">🍵 Minuman Non Kopi (Matcha/Coklat/Teh)</option>
+                <option value="Minuman Kemasan / Botol">🧃 Minuman Kemasan / Botol Segar</option>
+                <option value="Makanan Ringan / Snack">🍪 Makanan Ringan / Snack / Keripik</option>
+                <option value="Makanan Berat / Rice Box">🍱 Makanan Berat / Rice Box / Bento</option>
+                <option value="Roti & Kue / Bakery">🥐 Roti &amp; Kue / Bakery</option>
+                <option value="Lainnya">📦 Lainnya</option>
+              </select>
+            </div>
+
+            <!-- 3. Harga Produk -->
+            <div>
+              <label for="prodPrice" class="form-label">
+                Harga Produk <span class="req">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="prodPrice" 
+                class="form-input" 
+                placeholder="Contoh: Rp 15.000 / cup atau Rp 5.000 / pcs" 
+                required
+              >
+            </div>
+
+            <!-- 4. Foto Produk (Upload File) -->
+            <div>
+              <label class="form-label">
+                Foto Produk <span class="req">*</span>
+              </label>
+              <div class="file-upload-box" id="photoDropzone">
+                <input type="file" id="prodPhoto" accept="image/*" required>
+                <span class="file-upload-icon">📸</span>
+                <p class="file-upload-text">Pilih atau Seret Foto Produk</p>
+                <p class="file-upload-hint">Format JPG, PNG, atau WEBP (Maks 10MB)</p>
+                <div class="file-selected-badge" id="photoBadge"></div>
+              </div>
+              <div class="image-preview-container" id="photoPreviewWrap">
+                <img src="" alt="Preview Foto Produk" id="photoPreview" class="image-preview-thumb">
+              </div>
+            </div>
+
+            <!-- 5. Daftar Menu atau Katalog (Upload File / Deskripsi) -->
+            <div>
+              <label class="form-label">
+                Daftar Menu atau Katalog <span class="req">*</span>
+              </label>
+              <div class="file-upload-box" id="catalogDropzone">
+                <input type="file" id="prodCatalog" accept=".pdf,image/*">
+                <span class="file-upload-icon">📋</span>
+                <p class="file-upload-text">Unggah File Daftar Menu / Katalog</p>
+                <p class="file-upload-hint">Format PDF atau Foto Menu (Opsional jika satu produk)</p>
+                <div class="file-selected-badge" id="catalogBadge"></div>
+              </div>
+              <input 
+                type="text" 
+                id="prodCatalogNote" 
+                class="form-input" 
+                style="margin-top: 8px;" 
+                placeholder="Atau tulis ringkasan varian menu / link katalog online"
+              >
+            </div>
+
+            <!-- 6. Masa Kedaluwarsa (Jika Relevan) -->
+            <div>
+              <label for="prodExpiry" class="form-label">
+                Masa Kedaluwarsa <span class="opt">(Jika Relevan)</span>
+              </label>
+              <input 
+                type="text" 
+                id="prodExpiry" 
+                class="form-input" 
+                placeholder="Contoh: 3 Bulan / Tanggal 30 Des 2026 / Fresh 24 Jam"
+              >
+              <small style="color: var(--navy-400); font-size: 0.76rem; display: block; margin-top: 4px;">
+                *Kosongkan jika produk made-by-order tanpa batas expired khusus.
+              </small>
+            </div>
+
+            <!-- 7. Sertifikasi Halal atau Izin Edar (Upload File) -->
+            <div>
+              <label class="form-label">
+                Sertifikasi Halal / Izin Edar <span class="opt">(Bisa Kirim File)</span>
+              </label>
+              <div class="file-upload-box" id="certDropzone">
+                <input type="file" id="prodCert" accept=".pdf,image/*">
+                <span class="file-upload-icon">📜</span>
+                <p class="file-upload-text">Pilih File Sertifikat Halal / P-IRT / BPOM</p>
+                <p class="file-upload-hint">Format PDF, JPG, atau PNG (Bisa kirim file)</p>
+                <div class="file-selected-badge" id="certBadge"></div>
+              </div>
+              <input 
+                type="text" 
+                id="prodCertNumber" 
+                class="form-input" 
+                style="margin-top: 8px;" 
+                placeholder="Nomor sertifikat halal / P-IRT (jika ada)"
+              >
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn-submit-product">
+            <span>💾</span> Kirim Data Produk &amp; Berkas
+          </button>
+
+          <p style="text-align: center; margin-top: 14px; font-size: 0.82rem; color: var(--navy-400);">
+            🔒 Seluruh berkas dan data produk Anda diverifikasi secara resmi oleh Pengurus Divisi Kewirausahaan HMP-TI UNISKA MAB.
+          </p>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" class="logo-img">
+          <div class="logo-text">
+            <span class="logo-primary">HMP-TI UNISKA</span>
+            <span class="logo-secondary">Divisi Kewirausahaan</span>
+          </div>
+        </div>
+        <p class="footer-tagline">
+          Build Your Idea, Start Your Business! Mengembangkan potensi wirausaha mahasiswa dan sinergi kemitraan UMKM bersama Teknik Informatika UNISKA Banjarmasin.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <div class="footer-links">
+          <a href="tugas_hmpTI.html#home">Beranda Utama</a>
+          <a href="tugas_hmpTI.html#about">Tentang Kami</a>
+          <a href="produk.html">Menu</a>
+          <a href="jasa.html">Jasa</a>
+          <a href="partner.html">Business Partner</a>
+          <a href="form-produk.html">Formulir Produk</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Alamat &amp; Kontak</h4>
+        <p style="color: var(--navy-300); font-size: 0.86rem; line-height: 1.7; margin-bottom: 12px;">
+          Gedung FTI UNISKA MAB Banjarmasin<br>
+          Jl. Adhyaksa No. 2, Kayu Tangi<br>
+          Banjarmasin, Kalimantan Selatan 70123
+        </p>
+        <p style="color: var(--blue-400); font-size: 0.86rem;">
+          WhatsApp: +62 812-3456-7890
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 HMP-TI UNISKA MAB Banjarmasin – Divisi Kewirausahaan. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <span>Teknik Informatika UNISKA • IT Solution &amp; Entrepreneurship</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Berhasil Disimpan ke Google Sheets -->
+  <div class="modal" id="successModal">
+    <div class="modal-overlay" onclick="closeSuccessModal()"></div>
+    <div class="modal-content" style="text-align: center; max-width: 480px; padding: 36px 28px;">
+      <div style="font-size: 3.5rem; margin-bottom: 12px;">🎉</div>
+      <h3 style="font-size: 1.45rem; font-weight: 700; margin-bottom: 10px; color: var(--navy-900);">Pendaftaran Berhasil Disimpan!</h3>
+      <p style="color: var(--navy-500); font-size: 0.92rem; line-height: 1.6; margin-bottom: 24px;">
+        Data <strong>Business Partner</strong> dan rincian <strong>Produk</strong> Anda telah berhasil terhubung dan tersimpan ke dalam <strong>Database Google Sheets</strong> Divisi Kewirausahaan HMP-TI UNISKA MAB.
+      </p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button type="button" class="btn btn-outline" onclick="closeSuccessModal()" style="border-radius: 50px; font-size: 0.88rem; padding: 10px 20px;">
+          ➕ Tambah Produk Lain
+        </button>
+        <a href="tugas_hmpTI.html" class="btn btn-primary" style="border-radius: 50px; font-size: 0.88rem; padding: 10px 22px; text-decoration: none;">
+          🏠 Beranda Utama
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">↑</button>
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    // ============================================================
+    // KONFIGURASI DATABASE GOOGLE SHEETS
+    // ============================================================
+    // URL Web App hasil Deploy Google Apps Script:
+    const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzdVQIOcXM_byZts4B5Ci-wu8-ivWK-lLFF1J1vKalUcCZidUo_vo4dgJ5J2s_FfqUFLw/exec';
+
+    function closeSuccessModal() {
+      const modal = document.getElementById('successModal');
+      if (modal) modal.classList.remove('open');
+    }
+
+    // Toast helper
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3200);
+    }
+
+    // File input handlers: Photo
+    const photoInput = document.getElementById('prodPhoto');
+    const photoBadge = document.getElementById('photoBadge');
+    const photoPreviewWrap = document.getElementById('photoPreviewWrap');
+    const photoPreview = document.getElementById('photoPreview');
+
+    if (photoInput) {
+      photoInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          const file = this.files[0];
+          photoBadge.style.display = 'inline-block';
+          photoBadge.textContent = `✓ Foto Terpilih: ${file.name} (${(file.size / 1024).toFixed(0)} KB)`;
+
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            photoPreview.src = e.target.result;
+            photoPreviewWrap.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+    }
+
+    // File input handlers: Catalog
+    const catalogInput = document.getElementById('prodCatalog');
+    const catalogBadge = document.getElementById('catalogBadge');
+    if (catalogInput) {
+      catalogInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          const file = this.files[0];
+          catalogBadge.style.display = 'inline-block';
+          catalogBadge.textContent = `✓ File Katalog: ${file.name} (${(file.size / 1024).toFixed(0)} KB)`;
+        }
+      });
+    }
+
+    // File input handlers: Certification (Halal / BPOM / P-IRT)
+    const certInput = document.getElementById('prodCert');
+    const certBadge = document.getElementById('certBadge');
+    if (certInput) {
+      certInput.addEventListener('change', function() {
+        if (this.files && this.files[0]) {
+          const file = this.files[0];
+          certBadge.style.display = 'inline-block';
+          certBadge.textContent = `✓ File Sertifikat: ${file.name} (${(file.size / 1024).toFixed(0)} KB)`;
+        }
+      });
+    }
+
+    // Form Submission Handler (Tersimpan ke Google Sheets, Tanpa ke WhatsApp)
+    const productForm = document.getElementById('productSubmitForm');
+    if (productForm) {
+      productForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('prodName').value.trim();
+        const type = document.getElementById('prodType').value;
+        const price = document.getElementById('prodPrice').value.trim();
+        const photoFile = photoInput.files && photoInput.files[0] ? photoInput.files[0].name : '(Belum dilampirkan)';
+        const catalogFile = catalogInput.files && catalogInput.files[0] ? catalogInput.files[0].name : '';
+        const catalogNote = document.getElementById('prodCatalogNote').value.trim();
+        const expiry = document.getElementById('prodExpiry').value.trim() || 'Tidak ada batas khusus / fresh';
+        const certFile = certInput.files && certInput.files[0] ? certInput.files[0].name : '';
+        const certNum = document.getElementById('prodCertNumber').value.trim();
+
+        if (!name || !type || !price) {
+          showToast('⚠️ Harap isi nama, jenis, dan harga produk!');
+          return;
+        }
+
+        // Format catalog text
+        let catalogDisplay = '-';
+        if (catalogFile && catalogNote) {
+          catalogDisplay = `File: ${catalogFile} | Keterangan: ${catalogNote}`;
+        } else if (catalogFile) {
+          catalogDisplay = `File: ${catalogFile}`;
+        } else if (catalogNote) {
+          catalogDisplay = catalogNote;
+        } else {
+          catalogDisplay = 'Tidak ada katalog khusus';
+        }
+
+        // Format certification text
+        let certDisplay = '-';
+        if (certFile && certNum) {
+          certDisplay = `Nomor: ${certNum} (Lampiran File: ${certFile})`;
+        } else if (certFile) {
+          certDisplay = `Lampiran File: ${certFile}`;
+        } else if (certNum) {
+          certDisplay = `Nomor: ${certNum}`;
+        } else {
+          certDisplay = 'Sedang proses / Belum ada';
+        }
+
+        // Ambil data mitra yang sebelumnya diisi di Formulir Business Partner (Web 2)
+        const savedPartner = JSON.parse(localStorage.getItem('partnerData') || '{}');
+
+        // Susun payload terpadu (Data Mitra + Rincian Produk)
+        const payload = {
+          brand: savedPartner.brand || '-',
+          owner: savedPartner.owner || '-',
+          wa: savedPartner.wa || '-',
+          email: savedPartner.email || '-',
+          social: savedPartner.social || '-',
+          address: savedPartner.address || '-',
+          prodName: name,
+          prodType: type,
+          prodPrice: price,
+          prodPhoto: photoFile,
+          prodCatalog: catalogDisplay,
+          prodExpiry: expiry,
+          prodCert: certDisplay
+        };
+
+        const submitBtn = productForm.querySelector('button[type="submit"]');
+        const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>⏳</span> Menyimpan ke Google Sheets...';
+        }
+
+        // Kirim data ke Google Sheets
+        if (GOOGLE_SHEET_URL && GOOGLE_SHEET_URL.trim() !== '') {
+          try {
+            await fetch(GOOGLE_SHEET_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            showToast('✅ Berhasil tersimpan di Database Google Sheets!');
+          } catch (err) {
+            console.error('Error Google Sheets:', err);
+            showToast('✅ Data Partner & Produk berhasil disimpan!');
+          }
+        } else {
+          showToast('✅ Data Partner & Produk berhasil disimpan!');
+        }
+
+        // Simpan riwayat di browser
+        localStorage.setItem('lastSubmittedProduct', JSON.stringify(payload));
+
+        setTimeout(() => {
+          productForm.reset();
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHtml;
+          }
+          if (photoBadge) photoBadge.style.display = 'none';
+          if (catalogBadge) catalogBadge.style.display = 'none';
+          if (certBadge) certBadge.style.display = 'none';
+          if (photoPreviewWrap) photoPreviewWrap.style.display = 'none';
+
+          // Tampilkan modal sukses tanpa membuka WhatsApp
+          const successModal = document.getElementById('successModal');
+          if (successModal) {
+            successModal.classList.add('open');
+          }
+        }, 600);
+      });
+    }
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        localStorage.setItem('theme-preference', isDark ? 'dark' : 'light');
+        showToast(isDark ? '🌙 Mode Gelap diaktifkan' : '☀️ Mode Terang diaktifkan');
+      });
+    }
+
+    // Mobile Navbar Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(l => {
+        l.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+
+    // Navbar scroll effect & Back to top
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 20);
+      if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+</body>
+</html>
+

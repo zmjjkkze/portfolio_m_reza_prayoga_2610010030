@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulir Business Partner – Divisi Kewirausahaan HMP-TI UNISKA</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="logo-hmpti.jpg">
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="tugas_hmpTI.css">
+
+  <style>
+    /* Specific styles for Business Partner Page */
+    .partner-hero {
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 60%, var(--navy-700) 100%);
+      color: #ffffff;
+      padding: 130px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .partner-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='white' stroke-width='0.5' stroke-opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .partner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px;
+      border-radius: 50px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    .partner-hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: #ffffff !important;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+    .partner-hero p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: #cbd5e1 !important;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* Steps / Benefits Cards */
+    .partner-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: -30px auto 40px;
+      position: relative;
+      z-index: 10;
+      padding: 0 16px;
+    }
+    .partner-step-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      border: 1px solid var(--navy-100);
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .partner-step-card:hover {
+      transform: translateY(-4px);
+    }
+    body.dark-mode .partner-step-card {
+      background: #0f2038;
+      border-color: #1a3356;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    }
+    .partner-step-icon {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    .partner-step-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-bottom: 6px;
+    }
+    body.dark-mode .partner-step-title {
+      color: #ffffff;
+    }
+    .partner-step-desc {
+      font-size: 0.85rem;
+      color: var(--navy-600);
+      line-height: 1.5;
+    }
+    body.dark-mode .partner-step-desc {
+      color: #94a3b8;
+    }
+
+    /* Form Card Container */
+    .partner-form-container {
+      max-width: 760px;
+      margin: 0 auto 60px;
+      background: var(--white);
+      border-radius: var(--radius-xl);
+      padding: 40px 36px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--navy-100);
+    }
+    body.dark-mode .partner-form-container {
+      background: #0f2038;
+      border-color: #1a3356;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-header-box {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .form-header-box h2 {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--navy-900);
+      margin-bottom: 8px;
+    }
+    body.dark-mode .form-header-box h2 {
+      color: #ffffff;
+    }
+    .form-header-box p {
+      color: var(--navy-500);
+      font-size: 0.92rem;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+    body.dark-mode .form-header-box p {
+      color: #94a3b8;
+    }
+
+    .partner-grid-fields {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 640px) {
+      .partner-grid-fields {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .partner-form-container {
+        padding: 28px 20px;
+      }
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .partner-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--navy-800);
+      margin-bottom: 8px;
+    }
+    body.dark-mode .partner-label {
+      color: #cbd5e1;
+    }
+    .partner-label span.req {
+      color: #ef4444;
+      font-weight: 700;
+    }
+
+    .partner-input,
+    .partner-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--navy-200);
+      background: var(--white);
+      color: var(--navy-900);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    body.dark-mode .partner-input,
+    body.dark-mode .partner-textarea {
+      background: #0a1728;
+      border-color: #1a3356;
+      color: #ffffff;
+    }
+    .partner-input:focus,
+    .partner-textarea:focus {
+      border-color: var(--blue-500);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    }
+
+    .btn-submit-partner {
+      width: 100%;
+      background: #25d366;
+      color: #ffffff !important;
+      border: none;
+      border-radius: 50px;
+      padding: 14px 28px;
+      font-size: 1.02rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+      margin-top: 24px;
+    }
+    .btn-submit-partner:hover {
+      background: #1ebc59;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(37, 211, 102, 0.5);
+    }
+  </style>
+
+  <!-- Anti-flash Dark Mode Script -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme-preference');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.classList.add('dark-mode');
+        });
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="tugas_hmpTI.html" class="nav-logo">
+        <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-primary">HMP-TI UNISKA</span>
+          <span class="logo-secondary">Divisi Kewirausahaan</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="tugas_hmpTI.html#home" class="nav-link">← Beranda Utama</a></li>
+        <li><a href="tugas_hmpTI.html#about" class="nav-link">About Us</a></li>
+        <li><a href="tugas_hmpTI.html#programs" class="nav-link">Programs</a></li>
+        <li><a href="produk.html" class="nav-link">Menu</a></li>
+        <li><a href="jasa.html" class="nav-link">Jasa</a></li>
+        <li><a href="tugas_hmpTI.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Ganti mode gelap/terang" title="Ganti mode gelap/terang">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon">🌙</span>
+        </button>
+        <a href="partner.html" class="nav-cta active" style="background-color: var(--blue-600); border-color: var(--blue-600);">
+          Bergabung
+        </a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigasi">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO BANNER
+       ============================================================ -->
+  <header class="partner-hero">
+    <div class="section-container">
+      <span class="partner-badge">🤝 Kemitraan UMKM &amp; Mahasiswa · HMP-TI UNISKA MAB</span>
+      <h1>Formulir <span class="highlight">Business Partner</span></h1>
+      <p>
+        Mari berkembang bersama! Divisi Kewirausahaan HMP-TI UNISKA membuka peluang kemitraan bagi pelaku usaha makanan &amp; minuman untuk memasarkan produk ke civitas akademika dan event kampus.
+      </p>
+    </div>
+  </header>
+
+  <!-- Steps / Highlights -->
+  <div class="partner-steps-grid">
+    <div class="partner-step-card">
+      <div class="partner-step-icon">📋</div>
+      <h3 class="partner-step-title">1. Isi Formulir</h3>
+      <p class="partner-step-desc">Lengkapi 7 data profil usaha dan produk makanan/minuman Anda.</p>
+    </div>
+    <div class="partner-step-card">
+      <div class="partner-step-icon">📦</div>
+      <h3 class="partner-step-title">2. Isi Formulir Produk</h3>
+      <p class="partner-step-desc">Lanjutkan pengisian data produk Anda setelah formulir ini selesai.</p>
+    </div>
+    <div class="partner-step-card">
+      <div class="partner-step-icon">🚀</div>
+      <h3 class="partner-step-title">3. Mulai Kemitraan</h3>
+      <p class="partner-step-desc">Produk Anda siap dipasarkan melalui bazar kampus &amp; katalog digital.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN FORM SECTION
+       ============================================================ -->
+  <main class="section" style="padding-top: 10px;">
+    <div class="section-container">
+      <div class="partner-form-container">
+        
+        <div class="form-header-box">
+          <h2>Formulir Pendaftaran Mitra</h2>
+          <p>Silakan isi informasi di bawah ini dengan benar untuk memulai kerjasama kemitraan.</p>
+        </div>
+
+        <form id="businessPartnerForm">
+          <div class="partner-grid-fields">
+            
+            <!-- 1. Nama Perusahaan atau Brand -->
+            <div>
+              <label for="companyBrand" class="partner-label">
+                Nama Perusahaan / Brand <span class="req">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="companyBrand" 
+                class="partner-input" 
+                placeholder="Contoh: Kopi Banjar, Dapur Berkah" 
+                required
+              >
+            </div>
+
+            <!-- 2. Nama Pemilik atau Penanggung Jawab -->
+            <div>
+              <label for="ownerName" class="partner-label">
+                Nama Pemilik / Penanggung Jawab <span class="req">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="ownerName" 
+                class="partner-input" 
+                placeholder="Nama lengkap PIC usaha" 
+                required
+              >
+            </div>
+
+            <!-- 3. Nomor WhatsApp -->
+            <div>
+              <label for="whatsappNumber" class="partner-label">
+                Nomor WhatsApp <span class="req">*</span>
+              </label>
+              <input 
+                type="tel" 
+                id="whatsappNumber" 
+                class="partner-input" 
+                placeholder="Contoh: 081234567890" 
+                required
+              >
+            </div>
+
+            <!-- 4. Email -->
+            <div>
+              <label for="partnerEmail" class="partner-label">
+                Email <span class="req">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="partnerEmail" 
+                class="partner-input" 
+                placeholder="Contoh: usaha@gmail.com" 
+                required
+              >
+            </div>
+
+            <!-- 5. Jenis Produk Makanan/Minuman -->
+            <div>
+              <label for="productType" class="partner-label">
+                Jenis Produk Makanan / Minuman <span class="req">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="productType" 
+                class="partner-input" 
+                placeholder="Contoh: Kopi Botol, Boba, Keripik, Snack" 
+                required
+              >
+            </div>
+
+            <!-- 6. Media Sosial atau Marketplace -->
+            <div>
+              <label for="socialMedia" class="partner-label">
+                Media Sosial / Marketplace <span class="req">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="socialMedia" 
+                class="partner-input" 
+                placeholder="Contoh: IG @namabrand / link Shopee" 
+                required
+              >
+            </div>
+
+            <!-- 7. Alamat Usaha -->
+            <div class="field-full">
+              <label for="businessAddress" class="partner-label">
+                Alamat Usaha <span class="req">*</span>
+              </label>
+              <textarea 
+                id="businessAddress" 
+                class="partner-textarea" 
+                rows="3" 
+                placeholder="Alamat lengkap tempat usaha, outlet, atau lokasi produksi Anda" 
+                required
+              ></textarea>
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn-submit-partner">
+            <span>📦</span> Formulir Produk ➔
+          </button>
+
+          <p style="text-align: center; margin-top: 16px; font-size: 0.8rem; color: var(--navy-400);">
+            🔒 Data Anda aman dan hanya digunakan untuk keperluan koordinasi kemitraan HMP-TI UNISKA MAB.
+          </p>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" class="logo-img">
+          <div class="logo-text">
+            <span class="logo-primary">HMP-TI UNISKA</span>
+            <span class="logo-secondary">Divisi Kewirausahaan</span>
+          </div>
+        </div>
+        <p class="footer-tagline">
+          Build Your Idea, Start Your Business! Mengembangkan potensi wirausaha mahasiswa dan sinergi kemitraan UMKM bersama Teknik Informatika UNISKA Banjarmasin.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <div class="footer-links">
+          <a href="tugas_hmpTI.html#home">Beranda Utama</a>
+          <a href="tugas_hmpTI.html#about">Tentang Kami</a>
+          <a href="tugas_hmpTI.html#programs">Program Kerja</a>
+          <a href="produk.html">Menu</a>
+          <a href="jasa.html">Jasa</a>
+          <a href="tugas_hmpTI.html#contact">Hubungi Kami</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Alamat &amp; Kontak</h4>
+        <p style="color: var(--navy-300); font-size: 0.86rem; line-height: 1.7; margin-bottom: 12px;">
+          Gedung FTI UNISKA MAB Banjarmasin<br>
+          Jl. Adhyaksa No. 2, Kayu Tangi<br>
+          Banjarmasin, Kalimantan Selatan 70123
+        </p>
+        <p style="color: var(--blue-400); font-size: 0.86rem;">
+          WhatsApp: +62 812-3456-7890
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 HMP-TI UNISKA MAB Banjarmasin – Divisi Kewirausahaan. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <span>Teknik Informatika UNISKA • IT Solution &amp; Entrepreneurship</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">↑</button>
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    const WA_NUMBER = '628123456789';
+
+    // Toast helper
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    // Form Submission Handler
+    const partnerForm = document.getElementById('businessPartnerForm');
+    if (partnerForm) {
+      partnerForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const brand = document.getElementById('companyBrand').value.trim();
+        const owner = document.getElementById('ownerName').value.trim();
+        const wa = document.getElementById('whatsappNumber').value.trim();
+        const email = document.getElementById('partnerEmail').value.trim();
+        const product = document.getElementById('productType').value.trim();
+        const social = document.getElementById('socialMedia').value.trim();
+        const address = document.getElementById('businessAddress').value.trim();
+
+        if (!brand || !owner || !wa || !email || !product || !social || !address) {
+          showToast('⚠️ Harap lengkapi semua data formulir!');
+          return;
+        }
+
+        // Simpan data partner ke localStorage agar bisa diteruskan jika diperlukan
+        localStorage.setItem('partnerData', JSON.stringify({ brand, owner, wa, email, product, social, address }));
+
+        showToast('✅ Data Partner tersimpan! Membuka Formulir Produk...');
+        
+        setTimeout(() => {
+          partnerForm.reset();
+          window.location.href = 'form-produk.html';
+        }, 500);
+      });
+    }
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        localStorage.setItem('theme-preference', isDark ? 'dark' : 'light');
+        showToast(isDark ? '🌙 Mode Gelap diaktifkan' : '☀️ Mode Terang diaktifkan');
+      });
+    }
+
+    // Mobile Navbar Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(l => {
+        l.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+
+    // Navbar scroll effect & Back to top
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 20);
+      if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layanan & Jasa IT – HMP-TI UNISKA MAB</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="logo-hmpti.jpg">
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="tugas_hmpTI.css">
+
+  <style>
+    /* Specific styles for Jasa page */
+    .jasa-header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 50px;
+      background: rgba(59, 130, 246, 0.15);
+      color: #3b82f6;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    body.dark-mode .jasa-header-badge {
+      background: rgba(96, 165, 250, 0.15);
+      color: #60a5fa;
+      border-color: rgba(96, 165, 250, 0.3);
+    }
+
+    .jasa-hero {
+      background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 60%, var(--navy-700) 100%);
+      color: #ffffff;
+      padding: 130px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .jasa-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='white' stroke-width='0.5' stroke-opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .jasa-hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: #ffffff !important;
+      margin-bottom: 14px;
+      letter-spacing: -0.02em;
+    }
+    .jasa-hero p {
+      max-width: 650px;
+      margin: 0 auto 24px;
+      color: #cbd5e1 !important;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .hero-btn-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* Jasa Card Grid */
+    .jasa-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      margin-top: 36px;
+    }
+
+    .jasa-card {
+      background: var(--white);
+      border: 1px solid var(--navy-100);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition);
+      box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .jasa-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--blue-500);
+    }
+    body.dark-mode .jasa-card {
+      background: #0f2038;
+      border-color: #1a3356;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    body.dark-mode .jasa-card:hover {
+      border-color: #3b82f6;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .jasa-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .jasa-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: var(--radius-md);
+      background: var(--navy-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      border: 1px solid var(--navy-200);
+      flex-shrink: 0;
+    }
+    body.dark-mode .jasa-icon {
+      background: #142740;
+      border-color: #213c60;
+    }
+    .jasa-category-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 50px;
+      background: rgba(37, 99, 235, 0.1);
+      color: #2563eb;
+    }
+    body.dark-mode .jasa-category-tag {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+    }
+
+    .jasa-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    body.dark-mode .jasa-title {
+      color: #ffffff;
+    }
+    .jasa-desc {
+      font-size: 0.9rem;
+      color: var(--navy-600);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    body.dark-mode .jasa-desc {
+      color: #94a3b8;
+    }
+
+    /* Checklist of features */
+    .jasa-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .jasa-features li {
+      font-size: 0.85rem;
+      color: var(--navy-700);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+    }
+    body.dark-mode .jasa-features li {
+      color: #cbd5e1;
+    }
+    .jasa-features li span {
+      color: #2563eb;
+      font-weight: 800;
+    }
+    body.dark-mode .jasa-features li span {
+      color: #60a5fa;
+    }
+
+    .jasa-bottom {
+      border-top: 1px dashed var(--navy-100);
+      padding-top: 16px;
+      margin-top: auto;
+    }
+    body.dark-mode .jasa-bottom {
+      border-color: #1a3356;
+    }
+    .jasa-price-wrap {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .jasa-price-label {
+      font-size: 0.78rem;
+      color: var(--navy-400);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    body.dark-mode .jasa-price-label {
+      color: #64748b;
+    }
+    .jasa-price {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #1d4ed8;
+    }
+    body.dark-mode .jasa-price {
+      color: #60a5fa;
+    }
+
+    .btn-order-wa {
+      width: 100%;
+      background-color: #25d366;
+      color: #ffffff !important;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+      text-decoration: none;
+    }
+    .btn-order-wa:hover {
+      background-color: #1ebc59;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+    }
+
+    /* Switch banner between Menu & Jasa */
+    .switch-page-banner {
+      background: linear-gradient(90deg, #1e40af, #3b82f6);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .switch-page-banner a {
+      background: #ffffff;
+      color: #1e40af !important;
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 8px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .switch-page-banner a:hover {
+      background: #f1f5f9;
+      transform: scale(1.03);
+    }
+
+    /* FAQ section */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .faq-card {
+      background: var(--white);
+      border: 1px solid var(--navy-100);
+      border-radius: var(--radius-md);
+      padding: 22px;
+    }
+    body.dark-mode .faq-card {
+      background: #0f2038;
+      border-color: #1a3356;
+    }
+    .faq-question {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-bottom: 8px;
+    }
+    body.dark-mode .faq-question {
+      color: #ffffff;
+    }
+    .faq-answer {
+      font-size: 0.88rem;
+      color: var(--navy-600);
+      line-height: 1.6;
+    }
+    body.dark-mode .faq-answer {
+      color: #94a3b8;
+    }
+  </style>
+
+  <!-- Anti-flash Dark Mode Script -->
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme-preference');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.classList.add('dark-mode');
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.classList.add('dark-mode');
+        });
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="tugas_hmpTI.html" class="nav-logo">
+        <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" class="logo-img">
+        <div class="logo-text">
+          <span class="logo-primary">HMP-TI UNISKA</span>
+          <span class="logo-secondary">IT Solution &amp; Jasa</span>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="tugas_hmpTI.html#home" class="nav-link">← Beranda Utama</a></li>
+        <li><a href="tugas_hmpTI.html#about" class="nav-link">About Us</a></li>
+        <li><a href="tugas_hmpTI.html#programs" class="nav-link">Programs</a></li>
+        <li><a href="produk.html" class="nav-link">Menu</a></li>
+        <li><a href="#jasa" class="nav-link active">Jasa</a></li>
+        <li><a href="tugas_hmpTI.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Ganti mode gelap/terang" title="Ganti mode gelap/terang">
+          <span class="theme-icon-sun">☀️</span>
+          <span class="theme-icon-moon">🌙</span>
+        </button>
+        <a href="https://wa.me/628123456789?text=Halo%20Admin%20HMP-TI,%20saya%20ingin%20konsultasi%20layanan%20jasa%20IT" target="_blank" class="nav-cta" style="background-color: #25d366; border-color: #25d366;">
+          Konsultasi WA
+        </a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigasi">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO BANNER
+       ============================================================ -->
+  <header class="jasa-hero">
+    <div class="section-container">
+      <span class="jasa-header-badge">🛠️ Layanan IT Solution · HMP-TI UNISKA MAB</span>
+      <h1>Katalog Layanan &amp; <span class="highlight">Jasa</span></h1>
+      <p>
+        Solusi kebutuhan jilid, cetak &amp; fotocopy dokumen, desain poster kreatif, hingga pembuatan website profesional oleh Divisi Kewirausahaan HMP-TI UNISKA Banjarmasin.
+      </p>
+      <div class="hero-btn-row">
+        <a href="#jasa" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+          <span>Lihat Katalog Jasa</span> ↓
+        </a>
+        <a href="produk.html" class="btn btn-outline btn-white" style="display: inline-flex; align-items: center; gap: 8px; color: #ffffff !important; border-color: rgba(255,255,255,0.7) !important; background: rgba(255,255,255,0.12) !important;">
+          <span>☕ Buka Menu Kedai</span> ➔
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       JASA SECTION
+       ============================================================ -->
+  <main class="section" id="jasa" style="padding-top: 60px;">
+    <div class="section-container">
+      
+      <!-- Switch Banner to Menu -->
+      <div class="switch-page-banner">
+        <div>
+          <strong style="font-size: 1rem;">Mencari minuman atau cemilan kampus?</strong>
+          <p style="margin: 2px 0 0 0; font-size: 0.85rem; opacity: 0.9;">Tersedia kopi racikan, non-kopi, minuman kemasan, dan aneka snack.</p>
+        </div>
+        <a href="produk.html">☕ Kunjungi Katalog Menu ➔</a>
+      </div>
+
+      <div class="section-header">
+        <span class="section-tag">Daftar Layanan</span>
+        <h2 class="section-title">Pilihan <span class="highlight">Jasa &amp; Solusi</span></h2>
+        <p class="section-desc">
+          Pilih layanan yang Anda butuhkan, lalu klik tombol WhatsApp untuk langsung terhubung dan berkonsultasi dengan tim teknis kami.
+        </p>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-bar">
+        <input type="text" id="jasaSearch" class="search-input" placeholder="Cari jasa (contoh: Jilid, Print Stiker, Sertifikat, Amplop, Desain Poster, Website)...">
+        <button id="jasaSearchBtn" class="search-btn">Cari</button>
+      </div>
+
+      <!-- Filter Kategori -->
+      <div class="category-filters" id="jasaFilters">
+        <button class="filter-btn jasa-filter-btn active" data-category="all">Semua Jasa (8)</button>
+        <button class="filter-btn jasa-filter-btn" data-category="print">🖨️ Print &amp; Jilid (6)</button>
+        <button class="filter-btn jasa-filter-btn" data-category="desain">🎨 Desain Poster (1)</button>
+        <button class="filter-btn jasa-filter-btn" data-category="web">🌐 Website (1)</button>
+      </div>
+
+      <!-- Grid Jasa -->
+      <div class="jasa-grid" id="jasaGrid">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- FAQ Section -->
+      <div style="margin-top: 80px;">
+        <div class="section-header" style="text-align: center;">
+          <span class="section-tag">Informasi &amp; FAQ</span>
+          <h3 class="section-title" style="font-size: 1.8rem;">Pertanyaan Seputar <span class="highlight">Layanan Kami</span></h3>
+          <p class="section-desc" style="margin: 0 auto;">
+            Hal-hal umum yang sering ditanyakan mengenai alur pemesanan jasa di Divisi Kewirausahaan HMP-TI.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-card">
+            <h4 class="faq-question">❓ Bagaimana cara memesan jasa?</h4>
+            <p class="faq-answer">
+              Cukup klik tombol <strong>"Pesan Jasa via WA"</strong> pada kartu layanan yang diinginkan. Anda akan otomatis terhubung ke WhatsApp Admin untuk mendiskusikan kebutuhan, deadline, dan detail pengerjaan.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h4 class="faq-question">⏱️ Berapa lama estimasi pengerjaan?</h4>
+            <p class="faq-answer">
+              Untuk print, fotocopy, dan jilid bisa langsung selesai atau ditunggu di kampus. Desain poster berkisar 1–2 hari kerja. Sedangkan pembuatan website profesional berkisar 3–7 hari kerja.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h4 class="faq-question">🔄 Apakah ada revisi?</h4>
+            <p class="faq-answer">
+              Ya, seluruh jasa desain grafis dan pembuatan website kami sudah mencakup kuota revisi gratis hingga hasil sesuai kesepakatan awal.
+            </p>
+          </div>
+          <div class="faq-card">
+            <h4 class="faq-question">💳 Metode pembayaran apa saja?</h4>
+            <p class="faq-answer">
+              Kami menerima pembayaran via Transfer Bank (BCA, BRI, Mandiri), E-Wallet (DANA, GoPay, ShopeePay, OVO), QRIS, maupun Cash langsung di area kampus UNISKA.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="logo-hmpti.jpg" alt="Logo HMP-TI UNISKA MAB" class="logo-img">
+          <div class="logo-text">
+            <span class="logo-primary">HMP-TI UNISKA</span>
+            <span class="logo-secondary">Divisi Kewirausahaan</span>
+          </div>
+        </div>
+        <p class="footer-tagline">
+          Build Your Idea, Start Your Business! Mengembangkan jiwa kewirausahaan dan layanan solusi digital mahasiswa Teknik Informatika UNISKA MAB Banjarmasin.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigasi</h4>
+        <div class="footer-links">
+          <a href="tugas_hmpTI.html#home">Beranda Utama</a>
+          <a href="tugas_hmpTI.html#about">Tentang Kami</a>
+          <a href="tugas_hmpTI.html#programs">Program Kerja</a>
+          <a href="produk.html">Menu</a>
+          <a href="#jasa">Jasa</a>
+          <a href="tugas_hmpTI.html#contact">Hubungi Kami</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Layanan Populer</h4>
+        <div class="footer-links">
+          <a href="#jasa">Jilid Dokumen</a>
+          <a href="#jasa">Print Stiker &amp; FC</a>
+          <a href="#jasa">Desain Poster</a>
+          <a href="#jasa">Pembuatan Website</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Alamat &amp; Kontak</h4>
+        <p style="color: var(--navy-300); font-size: 0.86rem; line-height: 1.7; margin-bottom: 12px;">
+          Gedung FTI UNISKA MAB Banjarmasin<br>
+          Jl. Adhyaksa No. 2, Kayu Tangi<br>
+          Banjarmasin, Kalimantan Selatan 70123
+        </p>
+        <p style="color: var(--blue-400); font-size: 0.86rem;">
+          WhatsApp: +62 812-3456-7890
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 HMP-TI UNISKA MAB Banjarmasin – Divisi Kewirausahaan. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <span>Teknik Informatika UNISKA • IT Solution &amp; Entrepreneurship</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Kembali ke atas">↑</button>
+
+  <!-- ============================================================
+       JAVASCRIPT
+       ============================================================ -->
+  <script>
+    const WA_NUMBER = '628123456789';
+
+    // Data Katalog Jasa
+    const SERVICES = [
+      {
+        id: 'jasa-jilid',
+        name: 'Jilid',
+        category: 'print',
+        categoryLabel: 'Print & Jilid',
+        icon: '📑',
+        desc: 'Layanan jilid rapi untuk makalah, laporan praktikum, dokumen tugas kuliah, dan skripsi dengan cover mika pilihan.',
+        price: 'Rp 2.000',
+        features: [
+          'Jilid lakban benang kuat & awet',
+          'Cover mika benang depan & belakang',
+          'Pengerjaan cepat & rapi',
+          'Bisa ditunggu di area kampus'
+        ]
+      },
+      {
+        id: 'jasa-print-stiker',
+        name: 'Print stiker',
+        category: 'print',
+        categoryLabel: 'Print & Jilid',
+        icon: '🏷️',
+        desc: 'Cetak stiker berkualitas untuk label produk UMKM, kemasan makanan, minuman, merchandise, atau event kampus.',
+        price: 'Rp 3.000',
+        features: [
+          'Bahan stiker berkualitas tinggi',
+          'Warna tajam dan tidak mudah luntur',
+          'Bisa cutting rapi siap tempel',
+          'Cocok untuk kemasan & label'
+        ]
+      },
+      {
+        id: 'jasa-print-sertifikat',
+        name: 'Print/FC sertifikat',
+        category: 'print',
+        categoryLabel: 'Print & Jilid',
+        icon: '📜',
+        desc: 'Cetak dan fotocopy sertifikat kegiatan, piagam penghargaan event kampus, atau seminar dengan kertas tebal premium.',
+        price: 'Rp 3.000',
+        features: [
+          'Kertas tebal premium berserat',
+          'Resolusi cetak tajam 300 DPI',
+          'Warna cerah & proporsional',
+          'Bisa cetak satuan maupun partai'
+        ]
+      },
+      {
+        id: 'jasa-print-bw',
+        name: 'Print/FC hitam putih',
+        category: 'print',
+        categoryLabel: 'Print & Jilid',
+        icon: '📄',
+        desc: 'Layanan print dan fotocopy dokumen hitam putih untuk materi kuliah, tugas harian, draft skripsi, dan modul belajar.',
+        price: 'Rp 500',
+        features: [
+          'Kertas HVS putih bersih berkualitas',
+          'Tinta hitam pekat & tulisan jelas',
+          'Harga sangat hemat per lembar',
+          'Pengerjaan cepat tanpa antre lama'
+        ]
+      },
+      {
+        id: 'jasa-print-warna',
+        name: 'Print/FC warna',
+        category: 'print',
+        categoryLabel: 'Print & Jilid',
+        icon: '🖨️',
+        desc: 'Layanan print dan fotocopy full color untuk tugas presentasi, makalah bergambar, grafik, bagan, dan laporan proyek.',
+        price: 'Rp 1.000',
+        features: [
+          'Hasil cetak warna akurat & hidup',
+          'Kertas HVS tebal tidak tembus',
+          'Cocok untuk gambar, diagram & foto',
+          'Harga terjangkau untuk mahasiswa'
+        ]
+      },
+      {
+        id: 'jasa-print-amplop',
+        name: 'Print/FC amplop',
+        category: 'print',
+        categoryLabel: 'Print & Jilid',
+        icon: '✉️',
+        desc: 'Cetak kop surat resmi, logo organisasi/lembaga, dan alamat tujuan pada amplop surat dinas maupun proposal kegiatan.',
+        price: 'Rp 1.000',
+        features: [
+          'Presisi posisi teks dan logo',
+          'Tinta tahan dan tidak mudah pudar',
+          'Format amplop standar kampus/kantor',
+          'Melayani cetak satuan & banyak'
+        ]
+      },
+      {
+        id: 'jasa-desain-poster',
+        name: 'Desain Poster',
+        category: 'desain',
+        categoryLabel: 'Desain Grafis',
+        icon: '🎨',
+        desc: 'Pembuatan desain poster promosi acara kampus, seminar nasional, lomba, bazar UMKM, hingga publikasi media sosial.',
+        price: 'Rp 20.000 – Rp 50.000',
+        features: [
+          'Konsep visual kreatif & eye-catching',
+          'Format file siap cetak & posting (PDF/PNG/JPG)',
+          'Revisi gratis hingga sesuai keinginan',
+          'Resolusi tinggi jernih tanpa pecah'
+        ]
+      },
+      {
+        id: 'jasa-website',
+        name: 'Website',
+        category: 'web',
+        categoryLabel: 'Website & IT',
+        icon: '🌐',
+        desc: 'Pembuatan website profesional untuk profil usaha, UMKM, portofolio digital, atau organisasi dengan desain responsive modern.',
+        price: 'Rp 1.200.000',
+        features: [
+          'Desain responsive (HP, Tablet, Laptop)',
+          'Integrasi tombol pesan WhatsApp & medsos',
+          'Fitur katalog produk/layanan interaktif',
+          'Termasuk setup online domain & hosting'
+        ]
+      }
+    ];
+
+    // Toast helper
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    // Render Function
+    function renderServices(category = 'all', query = '') {
+      const grid = document.getElementById('jasaGrid');
+      if (!grid) return;
+
+      const q = query.trim().toLowerCase();
+
+      const filtered = SERVICES.filter(s => {
+        const matchesCategory = category === 'all' || s.category === category;
+        const matchesQuery = !q || 
+          s.name.toLowerCase().includes(q) || 
+          s.desc.toLowerCase().includes(q) ||
+          s.categoryLabel.toLowerCase().includes(q);
+        return matchesCategory && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px;">
+            <span style="font-size: 3rem;">🔍</span>
+            <h3 style="margin-top: 14px; font-size: 1.25rem;">Layanan tidak ditemukan</h3>
+            <p style="color: var(--navy-500); font-size: 0.9rem; max-width: 400px; margin: 8px auto 20px;">
+              Tidak ada jasa yang sesuai dengan kata kunci "${query}". Ingin request kebutuhan khusus? Hubungi admin via WhatsApp.
+            </p>
+            <a href="https://wa.me/${WA_NUMBER}?text=Halo%20Admin%20HMP-TI,%20saya%20ingin%20tanya%20jasa%20khusus" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 8px;">
+              💬 Tanya Kebutuhan Khusus
+            </a>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(s => {
+        const waMsg = encodeURIComponent(
+          `Halo Admin HMP-TI, saya tertarik dan ingin konsultasi/order jasa *${s.name}* (${s.price}). Mohon info detailnya ya!`
+        );
+
+        const featuresHtml = s.features.map(f => `<li><span>✓</span> ${f}</li>`).join('');
+
+        return `
+          <div class="jasa-card" data-category="${s.category}">
+            <div>
+              <div class="jasa-card-top">
+                <div class="jasa-icon">${s.icon}</div>
+                <span class="jasa-category-tag">${s.categoryLabel}</span>
+              </div>
+              <h3 class="jasa-title">${s.name}</h3>
+              <p class="jasa-desc">${s.desc}</p>
+              
+              <ul class="jasa-features">
+                ${featuresHtml}
+              </ul>
+            </div>
+
+            <div class="jasa-bottom">
+              <div class="jasa-price-wrap">
+                <span class="jasa-price-label">Biaya Jasa:</span>
+                <span class="jasa-price">${s.price}</span>
+              </div>
+              <a href="https://wa.me/${WA_NUMBER}?text=${waMsg}" target="_blank" class="btn-order-wa" title="Pesan jasa via WhatsApp">
+                <span>💬</span> Pesan Jasa via WA
+              </a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Filter Buttons Logic
+    let activeCategory = 'all';
+
+    document.querySelectorAll('.jasa-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.jasa-filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCategory = btn.dataset.category || 'all';
+        const query = document.getElementById('jasaSearch')?.value || '';
+        renderServices(activeCategory, query);
+      });
+    });
+
+    // Search Logic
+    const searchInput = document.getElementById('jasaSearch');
+    if (searchInput) {
+      searchInput.addEventListener('input', () => {
+        renderServices(activeCategory, searchInput.value);
+      });
+    }
+
+    document.getElementById('jasaSearchBtn')?.addEventListener('click', () => {
+      renderServices(activeCategory, searchInput ? searchInput.value : '');
+    });
+
+    // Theme Toggle
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        const isDark = document.body.classList.toggle('dark-mode');
+        document.documentElement.classList.toggle('dark-mode', isDark);
+        localStorage.setItem('theme-preference', isDark ? 'dark' : 'light');
+        showToast(isDark ? '🌙 Mode Gelap diaktifkan' : '☀️ Mode Terang diaktifkan');
+      });
+    }
+
+    // Mobile Navbar Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+      navLinks.querySelectorAll('a').forEach(l => {
+        l.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          navLinks.classList.remove('open');
+        });
+      });
+    }
+
+    // Navbar scroll effect & Back to top
+    const navbar = document.getElementById('navbar');
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 20);
+      if (backToTop) backToTop.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+
+    if (backToTop) {
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      renderServices('all', '');
+    });
+  </script>
+</body>
+</html>
+
